@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    function createCORSRequest(method, url) {
+      var xhr = new XMLHttpRequest();
+      if ("withCredentials" in xhr) {
+
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+
+      } else if (typeof XDomainRequest != "undefined") {
+
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+
+      } else {
+
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+
+      }
+      return xhr;
+    }
+
+    function makeCorsRequest() {
+        //var url = 'http://updates.html5rocks.com';
+        var url = 'http://192.168.1.108:5000/set';
+
+        var xhr = createCORSRequest('POST', url);
+        if (!xhr) {
+            alert('CORS not supported');
+            return;
+        }
+
+        // Response handlers.
+        xhr.onload = function() {
+            var text = xhr.responseText;
+            alert('Response from CORS request to ' + url + ': ' + text);
+        };
+
+        xhr.onerror = function() {
+            alert('Woops, there was an error making the request.');
+        };
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send("\{\"type\":400}");
+    }
+
+    function submitform() {
+
+        var serverip = document.getElementById("serverip").value;
+        var clientip = document.getElementById("clientip").value;
+
+        var msg = {
+            type : document.getElementById("type").value,
+            url : document.getElementById("url").value
+        };
+
+        //var form =  document.getElementById("myForm");
+        //form.action = "http://192.168.1.108:5000/set";
+        //form.method = "post";
+
+        var url = 'http://192.168.1.108:5000/info';
+        var xhr = createCORSRequest('GET', url);
+
+        if (!xhr) {
+          alert('CORS not supported');
+          throw new Error('CORS not supported');
+        }
+
+        xhr.onload = function() {
+         var responseText = xhr.responseText;
+         console.log(responseText);
+         alert(responseText);
+        };
+
+        xhr.onerror = function() {
+          console.log('There was an error!');
+          alert('There was an error!');
+        };
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        //xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+        //xhr.setRequestHeader('Access-Control-Allow-Methods', 'POST');
+        xhr.send();
+
+        /*
+          // construct an HTTP request
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "http://192.168.1.108:5000/info", true);
+          //xhr.open(form.method, form.action, true);
+          xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+          // send the collected data as JSON
+          //xhr.send(JSON.stringify(msg));
+          xhr.send("{text}");
+
+          xhr.onloadend = function () {
+            // done
+            //alert("done");
+          };
+
+          xhr.onreadystatechange = function(event)
+          {
+            alert("xhr.status: " + xhr.status + "event.target: "  + event.target);
+
+            if (xhr.readyState==4 && xhr.status==200)
+            {
+                alert("onreadystatechange");
+            }
+          }
+
+          //alert(JSON.stringify(msg));
+        */
+    }
+
+    function loadXMLDoc() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","http://192.168.1.108:5000/info",true);
+        xmlhttp.send();
+    }
+</script>
+
+</head>
+
+<body>
+
+serverip: <br/>
+<input type="text" name="serverip" id="serverip" />
+<br/>
+clientip:<br/>
+<input type="text" name="clientip" id="clientip" />
+
+<!--<form method="post" name="myForm" id="myForm" >-->
+<!--
+  <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" />
+    </div>
+    <div>
+        <label for="mail">E-mail:</label>
+        <input type="email" id="mail" />
+    </div>
+    <div>
+        <label for="msg">Message:</label>
+        <textarea id="msg"></textarea>
+    </div>
+-->
+
+    type: <br/>
+    <input type="text" name="type" id="type" />
+    <br/>
+    url:<br/>
+    <input type="text" name="url" id="url" />
+    <br/><br/>
+    
+    <button type="button" onclick="submitform()" >Send!</button>
+    <button type="button" onclick="loadXMLDoc()" >loadXMLDoc</button>
+    <button type="button" onclick="makeCorsRequest()" >makeCorsRequest</button>
+
+    <!--
+    <div class="button">
+        <button type="submit">Send your message</button>
+    </div>    
+    -->
+<!--</form>-->
+
+</body>

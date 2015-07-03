@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      video {
+        /*width: 440px;
+        height: 392px;
+        position: relative;
+        left: 0px;*/
+      }
+    </style>
+
+    <script>
+    function loadVideo() {
+      //alert("Video is loaded);
+      var video = document.getElementById("video");
+      //video.width = screen.availWidth;
+      video.height = screen.availHeight;
+      video.play();
+    }
+    </script>
+
+  </head>
+  <body onload="loadVideo()">
+    <video poster="http://www.html5rocks.com/en/tutorials/video/basics/star.png" controls id="video">
+      <source src="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+      <source src="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+      <source src="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+    </video>
+  </body>
+</html>
