@@ -18,9 +18,12 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.google.android.exoplayer.ExoPlayer;
+import com.google.android.exoplayer.VideoSurfaceView;
 
 import org.josejuansanchez.playground.controllers.ADBController;
 import org.josejuansanchez.playground.controllers.AudioController;
+import org.josejuansanchez.playground.controllers.ExoPlayerController;
 import org.josejuansanchez.playground.controllers.ImageViewController;
 import org.josejuansanchez.playground.controllers.LineChartController;
 import org.josejuansanchez.playground.controllers.SurfaceViewController;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private LineChart mChart;
     private SurfaceView mSurfaceView;
     private DisplayMetrics mDisplayMetrics;
+    private VideoSurfaceView mVideoSurfaceView;
+    private ExoPlayer mExoPlayer;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     // Controllers
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private WebViewController mWebViewController;
     private ADBController mADBController;
     private VibrateController mVibrateController;
+    private ExoPlayerController mExoPlayerController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mSurfaceView = (SurfaceView) findViewById(R.id.surfaceview);
         mSurfaceView.setVisibility(View.GONE);
 
+        mVideoSurfaceView = (VideoSurfaceView) findViewById(R.id.video_surfaceview);
+        mVideoSurfaceView.setVisibility(View.GONE);
+
         // Register as a subscriber
         EventBus.getDefault().register(this);
 
@@ -116,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mWebViewController = new WebViewController(this);
         mADBController = new ADBController(this);
         mVibrateController = new VibrateController(this);
+        mExoPlayerController = new ExoPlayerController(this);
 
         // Helper
         Utils utils = new Utils(this);
@@ -153,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mImageView.setVisibility(View.GONE);
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.GONE);
     }
 
     public void setVideoViewVisible() {
@@ -161,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mImageView.setVisibility(View.GONE);
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.GONE);
     }
 
     public void setImageViewVisible() {
@@ -169,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mImageView.setVisibility(View.VISIBLE);
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.GONE);
     }
 
     public void setChartVisible() {
@@ -177,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mImageView.setVisibility(View.GONE);
         mChart.setVisibility(View.VISIBLE);
         mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.GONE);
     }
 
     public void setSurfaceViewVisible() {
@@ -185,6 +199,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mImageView.setVisibility(View.GONE);
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.VISIBLE);
+        mVideoSurfaceView.setVisibility(View.GONE);
+    }
+
+    public void setVideoSurfaceViewVisible() {
+        mWebView.setVisibility(View.GONE);
+        mVideoView.setVisibility(View.GONE);
+        mImageView.setVisibility(View.GONE);
+        mChart.setVisibility(View.GONE);
+        mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.VISIBLE);
     }
 
     public String doAction(Message message) {
@@ -288,7 +312,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
         doAction(message);
     }
 
+
     // MainView public methods
+    //
+    // TODO: This code is temporary
     @Override
     public SurfaceView getmSurfaceView() {
         return mSurfaceView;
@@ -322,6 +349,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public WebView getmWebView() {
         return mWebView;
+    }
+
+    @Override
+    public VideoSurfaceView getmVideoSurfaceView() {
+        return mVideoSurfaceView;
+    }
+
+    @Override
+    public ExoPlayer getmExoPlayer() {
+        return mExoPlayer;
     }
 
     // Menu

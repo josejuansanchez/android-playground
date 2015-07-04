@@ -8,6 +8,8 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.google.android.exoplayer.ExoPlayer;
+import com.google.android.exoplayer.VideoSurfaceView;
 
 /**
  * Created by josejuansanchez on 23/06/15.
@@ -26,4 +28,8 @@ public interface MainView {
     public LineChart getmChart();
 
     public WebView getmWebView();
+
+    public VideoSurfaceView getmVideoSurfaceView();
+
+    public ExoPlayer getmExoPlayer();
 }

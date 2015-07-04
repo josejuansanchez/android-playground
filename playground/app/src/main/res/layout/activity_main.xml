@@ -15,6 +15,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
+    <com.google.android.exoplayer.VideoSurfaceView
+        android:id="@+id/video_surfaceview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
