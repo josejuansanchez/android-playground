@@ -31,4 +31,5 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.exoplayer:exoplayer:r1.3.3'
+    compile 'com.devbrackets.android:exomedia:2.2.1'
 }

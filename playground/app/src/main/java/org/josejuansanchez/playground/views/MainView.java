@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.devbrackets.android.exomedia.EMVideoView;
 import com.github.mikephil.charting.charts.LineChart;
-import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.VideoSurfaceView;
 
 /**
@@ -31,5 +31,5 @@ public interface MainView {
 
     public VideoSurfaceView getmVideoSurfaceView();
 
-    public ExoPlayer getmExoPlayer();
+    public EMVideoView getmEMVideoView();
 }

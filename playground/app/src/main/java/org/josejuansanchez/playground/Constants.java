@@ -24,7 +24,8 @@ public class Constants {
     public static final int SURFACEVIEW = 700;
     public static final int MONITOR = 900;
     public static final int VIBRATE = 1000;
+    public static final int PLAY_VIDEO_WITH_EXOPLAYER = 1100;
+    public static final int PLAY_VIDEO_WITH_EXOMEDIA = 1101;
 
     public static final int ERROR = 800;
-
 }

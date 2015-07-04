@@ -49,6 +49,7 @@
 * Dagger2
 * https://github.com/excilys/androidannotations
 * ExoPlayer
+* https://github.com/brianwernick/ExoMedia
 
 ### Wireless debugging over WiFi
 * [Android Debug Bridge (adb) Wireless Debugging Over Wi-Fi](http://codetheory.in/android-debug-bridge-adb-wireless-debugging-over-wi-fi/)

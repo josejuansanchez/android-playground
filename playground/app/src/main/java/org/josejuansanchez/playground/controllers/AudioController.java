@@ -41,6 +41,7 @@ public class AudioController {
             mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 @Override
                 public boolean onError(MediaPlayer mp, int what, int extra) {
+                    // TODO
                     // I'm not sure if I should release the mediaPlayer here
                     mediaPlayer.release();
                     return false;

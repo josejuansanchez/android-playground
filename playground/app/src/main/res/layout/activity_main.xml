@@ -21,6 +21,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"/>
 
+    <com.devbrackets.android.exomedia.EMVideoView
+        android:id="@+id/video_emvideoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"

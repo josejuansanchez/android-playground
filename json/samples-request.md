@@ -58,6 +58,19 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":201,"url":"http://d
 curl -H "Content-Type: application/json" -X POST -d '{"type":201,"url":"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4"}' http://192.168.1.102:5000/set
 
 
+### VIDEO (ExoPlayer)
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1100,"url":"http://techslides.com/demos/sample-videos/small.mp4"}' http://192.168.1.102:5000/set
+
+
+### VIDEO (ExoMedia)
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://techslides.com/demos/sample-videos/small.mp4"}' http://192.168.1.102:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4"}' http://192.168.1.102:5000/set
+
+
+
 ### AUDIO (MediaPlayer)
 curl -H "Content-Type: application/json" -X POST -d '{"type":200,"url":"http://creativecommons.lt/cloud/pub/sutemos/torrent/mp3/VA%20:%20Intelligent%20Toys:%20We%20Make%20Music%20(Sutemos027)/CD%202%20-%20Make/02%20Soulsonic%20-%20No.mp3"}' http://192.168.1.102:5000/set
 

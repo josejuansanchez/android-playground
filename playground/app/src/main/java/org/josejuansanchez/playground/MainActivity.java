@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.devbrackets.android.exomedia.EMVideoView;
 import com.github.mikephil.charting.charts.LineChart;
-import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.VideoSurfaceView;
 
 import org.josejuansanchez.playground.controllers.ADBController;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private SurfaceView mSurfaceView;
     private DisplayMetrics mDisplayMetrics;
     private VideoSurfaceView mVideoSurfaceView;
-    private ExoPlayer mExoPlayer;
+    private EMVideoView mEMVideoView;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     // Controllers
@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mVideoSurfaceView = (VideoSurfaceView) findViewById(R.id.video_surfaceview);
         mVideoSurfaceView.setVisibility(View.GONE);
 
+        mEMVideoView = (EMVideoView) findViewById(R.id.video_emvideoview);
+        mEMVideoView.setVisibility(View.GONE);
+
         // Register as a subscriber
         EventBus.getDefault().register(this);
 
@@ -164,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
         mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.GONE);
     }
 
     public void setVideoViewVisible() {
@@ -173,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
         mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.GONE);
     }
 
     public void setImageViewVisible() {
@@ -182,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
         mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.GONE);
     }
 
     public void setChartVisible() {
@@ -191,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.VISIBLE);
         mSurfaceView.setVisibility(View.GONE);
         mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.GONE);
     }
 
     public void setSurfaceViewVisible() {
@@ -200,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.VISIBLE);
         mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.GONE);
     }
 
     public void setVideoSurfaceViewVisible() {
@@ -209,7 +217,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mChart.setVisibility(View.GONE);
         mSurfaceView.setVisibility(View.GONE);
         mVideoSurfaceView.setVisibility(View.VISIBLE);
+        mEMVideoView.setVisibility(View.GONE);
     }
+
+    public void setEMVideoViewVisible() {
+        mWebView.setVisibility(View.GONE);
+        mVideoView.setVisibility(View.GONE);
+        mImageView.setVisibility(View.GONE);
+        mChart.setVisibility(View.GONE);
+        mSurfaceView.setVisibility(View.GONE);
+        mVideoSurfaceView.setVisibility(View.GONE);
+        mEMVideoView.setVisibility(View.VISIBLE);
+    }
+
 
     public String doAction(Message message) {
 
@@ -254,6 +274,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case Constants.PLAY_VIDEO:
                 setVideoViewVisible();
                 mVideoController.playVideo(message);
+                break;
+
+            case Constants.PLAY_VIDEO_WITH_EXOPLAYER:
+                setVideoSurfaceViewVisible();
+                mExoPlayerController.playVideo(message);
+                break;
+
+            case Constants.PLAY_VIDEO_WITH_EXOMEDIA:
+                setEMVideoViewVisible();
+                mExoPlayerController.playEMVideo(message);
                 break;
 
             case Constants.ADB_COMMAND:
@@ -357,8 +387,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public ExoPlayer getmExoPlayer() {
-        return mExoPlayer;
+    public EMVideoView getmEMVideoView() {
+        return mEMVideoView;
     }
 
     // Menu
