@@ -1,11 +1,9 @@
 package org.josejuansanchez.playground;
 
 import android.content.Intent;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -119,13 +117,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mADBController = new ADBController(this);
         mVibrateController = new VibrateController(this);
 
+        // Helper
+        Utils utils = new Utils(this);
+
         // Start the HTTP server
         //initHttpServer();
         Intent intent = new Intent(this, ServiceHttpServer.class);
         startService(intent);
 
         // Show the IP address in the title
-        setTitle(getIPAddress() + ":" + Constants.DEFAULT_HTTP_PORT);
+        setTitle(utils.getIPAddress() + ":" + Constants.DEFAULT_HTTP_PORT);
 
     }
 
@@ -277,12 +278,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
-    }
-
-    public String getIPAddress() {
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-        return ip;
     }
 
     // EventBus

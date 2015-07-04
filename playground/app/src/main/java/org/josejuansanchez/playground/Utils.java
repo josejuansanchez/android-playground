@@ -1,6 +1,8 @@
 package org.josejuansanchez.playground;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,6 +40,13 @@ public class Utils {
         }
 
         return buf.toString();
+    }
+
+
+    public String getIPAddress() {
+        WifiManager wm = (WifiManager) mContext.getSystemService(mContext.WIFI_SERVICE);
+        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        return ip;
     }
 
 }
