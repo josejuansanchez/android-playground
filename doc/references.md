@@ -15,6 +15,10 @@
 * [Android Video Example](http://examples.javacodegeeks.com/android/android-videoview-example/)
 * [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
 
+### ExoPlayer
+* [ExoPlayer](https://developer.android.com/guide/topics/media/exoplayer.html)
+* [ExoPlayer: Google's new Android media player](http://applidium.com/en/news/exoplayer_new_android_media_player/)
+
 ### CSS
 * [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
 
