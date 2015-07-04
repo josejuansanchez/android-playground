@@ -18,6 +18,7 @@
 ### ExoPlayer
 * [ExoPlayer](https://developer.android.com/guide/topics/media/exoplayer.html)
 * [ExoPlayer: Google's new Android media player](http://applidium.com/en/news/exoplayer_new_android_media_player/)
+* [ExoPlayer: Adaptive video streaming on Android](https://www.youtube.com/watch?v=6VjF638VObA). Video.
 
 ### CSS
 * [CSS](https://developer.mozilla.org/es/docs/Web/CSS)

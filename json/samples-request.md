@@ -55,6 +55,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":201,"url":"http://t
 curl -H "Content-Type: application/json" -X POST -d '{"type":201,"url":"http://download.wavetlan.com/SVV/Media/HTTP/MP4/ConvertedFiles/MediaCoder/MediaCoder_test1_1m9s_AVC_VBR_256kbps_640x480_24fps_MPEG2Layer3_CBR_160kbps_Stereo_22050Hz.mp4
 "}' http://192.168.1.102:5000/set
 
+curl -H "Content-Type: application/json" -X POST -d '{"type":201,"url":"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4"}' http://192.168.1.102:5000/set
+
 
 ### AUDIO (MediaPlayer)
 curl -H "Content-Type: application/json" -X POST -d '{"type":200,"url":"http://creativecommons.lt/cloud/pub/sutemos/torrent/mp3/VA%20:%20Intelligent%20Toys:%20We%20Make%20Music%20(Sutemos027)/CD%202%20-%20Make/02%20Soulsonic%20-%20No.mp3"}' http://192.168.1.102:5000/set
