@@ -69,6 +69,16 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://
 
 curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://sample-videos.com/video/mp4/720/big_buck_bunny_720p_50mb.mp4"}' http://192.168.1.102:5000/set
 
+curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"}' http://192.168.1.102:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8"}' http://192.168.1.102:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://demos.webmproject.org/exoplayer/glass_vp9_vorbis.webm"}' http://192.168.1.102:5000/set
+
+
+
+Use this samples:
+* https://github.com/google/ExoPlayer/blob/master/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java
 
 
 ### AUDIO (MediaPlayer)
