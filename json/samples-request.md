@@ -76,7 +76,6 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"https:/
 curl -H "Content-Type: application/json" -X POST -d '{"type":1101,"url":"http://demos.webmproject.org/exoplayer/glass_vp9_vorbis.webm"}' http://192.168.1.102:5000/set
 
 
-
 Use this samples:
 * https://github.com/google/ExoPlayer/blob/master/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java
 
@@ -124,6 +123,11 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":300,"command":"adb 
 curl -H "Content-Type: application/json" -X POST -d '{"type":300,"command":"adb shell am start -n com.whatsapp/com.whatsapp.Main"}' http://192.168.1.102:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '{"type": 300,"command":"am start -n com.android.chrome/com.google.android.apps.chrome.Main"}' http://192.168.1.102:5000/set
+
+
+## TEXT TO SPEECH
+
+curl -H "Content-Type: application/json" -X POST -d '{"type":1200,"text":"Hola"}' http://192.168.1.102:5000/set
 
 
 Android Shell Commands:

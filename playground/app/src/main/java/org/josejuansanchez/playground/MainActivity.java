@@ -27,6 +27,7 @@ import org.josejuansanchez.playground.controllers.ExoPlayerController;
 import org.josejuansanchez.playground.controllers.ImageViewController;
 import org.josejuansanchez.playground.controllers.LineChartController;
 import org.josejuansanchez.playground.controllers.SurfaceViewController;
+import org.josejuansanchez.playground.controllers.TextToSpeechController;
 import org.josejuansanchez.playground.controllers.VibrateController;
 import org.josejuansanchez.playground.controllers.VideoController;
 import org.josejuansanchez.playground.controllers.WebViewController;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private ADBController mADBController;
     private VibrateController mVibrateController;
     private ExoPlayerController mExoPlayerController;
+    private TextToSpeechController mTTSController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mADBController = new ADBController(this);
         mVibrateController = new VibrateController(this);
         mExoPlayerController = new ExoPlayerController(this);
+        mTTSController = new TextToSpeechController(this);
 
         // Helper
         Utils utils = new Utils(this);
@@ -319,6 +322,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
             case Constants.VIBRATE:
                 mVibrateController.vibrate(message);
+                break;
+
+            case Constants.TEXT_TO_SPEECH:
+                mTTSController.speak(message);
                 break;
 
         }

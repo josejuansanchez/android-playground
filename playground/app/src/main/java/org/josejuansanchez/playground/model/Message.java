@@ -19,6 +19,7 @@ public class Message {
     private String value;
     private String timestamp;
     private long milliseconds;
+    private String text;
 
     public Message(int type) {
         this.type = type;
@@ -134,5 +135,13 @@ public class Message {
 
     public void setMilliseconds(long milliseconds) {
         this.milliseconds = milliseconds;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
