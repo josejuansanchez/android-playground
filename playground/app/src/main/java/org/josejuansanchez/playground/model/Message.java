@@ -1,9 +1,11 @@
 package org.josejuansanchez.playground.model;
 
+import java.io.Serializable;
+
 /**
  * Created by josejuansanchez on 01/05/15.
  */
-public class Message {
+public class Message implements Serializable {
 
     private int type;
     private String url;
