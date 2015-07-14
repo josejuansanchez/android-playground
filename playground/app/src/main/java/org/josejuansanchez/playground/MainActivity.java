@@ -331,7 +331,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case Constants.UI:
                 // Parcelable vs Serializable
                 // Reference: http://www.developerphil.com/parcelable-vs-serializable/
-                Intent intent = new Intent(this, AbsoluteLayoutActivity.class);
+                Intent intent = new Intent(this, SeekBarActivity.class);
+                //Intent intent = new Intent(this, AbsoluteLayoutActivity.class);
                 intent.putExtra(Constants.EXTRA_MESSAGE, message);
                 startActivity(intent);
                 break;

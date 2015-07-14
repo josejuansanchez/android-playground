@@ -34,6 +34,10 @@
             android:name=".AbsoluteLayoutActivity"
             android:label="@string/title_activity_absolute_layout" >
         </activity>
+        <activity
+            android:name=".SeekBarActivity"
+            android:label="@string/title_activity_seek_bar" >
+        </activity>
     </application>
 
 </manifest>
