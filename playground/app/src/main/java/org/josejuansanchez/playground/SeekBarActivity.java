@@ -16,6 +16,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     private List<SeekBar> mSeekBar = new ArrayList<SeekBar>();
     private int mProgressChanged[];
+    private Message message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         // Get the message from the intent
         Intent intent = getIntent();
-        Message message = (Message) intent.getSerializableExtra(Constants.EXTRA_MESSAGE);
+        message = (Message) intent.getSerializableExtra(Constants.EXTRA_MESSAGE);
 
         processUICode(message);
     }
@@ -38,11 +39,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.weight = 1;
 
-        // TODO: Temporary solution using a harcoded value
-        mProgressChanged = new int[3];
+        mProgressChanged = new int[message.getTotal()];
 
-        // TODO: Temporary solution using a harcoded value
-        for (int i=0; i< 3; i++) {
+        for (int i=0; i< message.getTotal(); i++) {
             mSeekBar.add(new SeekBar(this));
             mSeekBar.get(i).setOnSeekBarChangeListener(this);
             mSeekBar.get(i).setTag(i);
@@ -69,9 +68,8 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
-        // TODO: Temporary solution using a harcoded value
         String textTodisplay = "";
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<message.getTotal(); i++) {
             textTodisplay += i + ":" + mProgressChanged[i] + " ";
         }
 

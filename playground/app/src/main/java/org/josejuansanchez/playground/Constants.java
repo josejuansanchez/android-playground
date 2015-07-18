@@ -30,7 +30,9 @@ public class Constants {
     public static final int PLAY_VIDEO_WITH_EXOPLAYER = 1100;
     public static final int PLAY_VIDEO_WITH_EXOMEDIA = 1101;
     public static final int TEXT_TO_SPEECH = 1200;
+
     public static final int UI = 2000;
+    public static final int SEEKBAR = 2001;
 
     public static final int ERROR = 800;
 }
