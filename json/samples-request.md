@@ -183,5 +183,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":900, "label":"Tempe
 curl -H "Content-Type: application/json" -X POST -d '{"type":1000,"milliseconds":500}' http://192.168.1.102:5000/set
 
 ## UI
-
+### BUTTON
 curl -H "Content-Type: application/json" -X POST -d '{"type":2000,"text":"Prueba","x":10,"y":500}' http://192.168.1.102:5000/set
+
+### SEEKBAR
+curl -H "Content-Type: application/json" -X POST -d '{"type":2001,"total":3}' http://192.168.1.102:5000/set
