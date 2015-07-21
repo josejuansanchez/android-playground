@@ -23,6 +23,7 @@ public class Message implements Serializable {
     private long milliseconds;
     private String text;
     private int total;
+    private String labels[];
 
     public Message(int type) {
         this.type = type;
@@ -154,5 +155,13 @@ public class Message implements Serializable {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public String[] getLabels() {
+        return labels;
+    }
+
+    public void setLabels(String[] labels) {
+        this.labels = labels;
     }
 }
