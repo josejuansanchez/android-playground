@@ -7,22 +7,4 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <!--
-    <SeekBar
-        android:id="@+id/seekbar_a"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <SeekBar
-        android:id="@+id/seekbar_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <SeekBar
-        android:id="@+id/seekbar_c"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-        -->
-
 </LinearLayout>
-
