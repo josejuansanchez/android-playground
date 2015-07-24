@@ -92,8 +92,25 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         Toast.makeText(SeekBarActivity.this, textTodisplay, Toast.LENGTH_SHORT).show();
 
+        switch (message.getAction().getConnection()) {
+            case HTTP:
+                doHttpAction(json);
+                break;
+
+            // TODO
+            case BLUETOOTH:
+                break;
+
+            // TODO
+            case SERIAL:
+                break;
+        }
+
+    }
+
+    private void doHttpAction(JsonObject json) {
         Ion.with(this)
-                .load("http://192.168.1.13:3000/")
+                .load(message.getAction().getUri())
                 .setJsonObjectBody(json)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
@@ -109,5 +126,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
                     }
                 });
+
     }
 }
