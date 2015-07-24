@@ -24,6 +24,7 @@ public class Message implements Serializable {
     private String text;
     private int total;
     private String labels[];
+    private Action action;
 
     public Message(int type) {
         this.type = type;
@@ -163,5 +164,13 @@ public class Message implements Serializable {
 
     public void setLabels(String[] labels) {
         this.labels = labels;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
     }
 }
