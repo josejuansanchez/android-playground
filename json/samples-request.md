@@ -187,8 +187,65 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":1000,"milliseconds"
 curl -H "Content-Type: application/json" -X POST -d '{"type":2000,"text":"Prueba","x":10,"y":500}' http://192.168.1.11:5000/set
 
 ### SEEKBAR
-curl -H "Content-Type: application/json" -X POST -d '{"type":2001,"total":3,"labels": ["R", "G", "B"]}' http://192.168.1.11:5000/set
 
-curl -H "Content-Type: application/json" -X POST -d '{"type":2001,"total":2,"labels": ["Left Servo", "Right Servo"]}' http://192.168.1.11:5000/set
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":1,
+	"labels": ["Volumne"],
+	"action": {
+		"connection": 0, 
+		"uri": "http://192.168.1.13:3000"
+	}
+}' http://192.168.1.11:5000/set
 
-curl -H "Content-Type: application/json" -X POST -d '{"type":2001,"total":1,"labels": ["Volumne"]}' http://192.168.1.11:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":2,
+	"labels": ["Left Servo", "Right Servo"],
+	"action": {
+		"connection": 0, 
+		"uri": "http://192.168.1.13:3000"
+	}
+}' http://192.168.1.11:5000/set
+
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":3,
+	"labels": ["R", "G", "B"],
+	"max": [255, 255, 255],
+	"action": {
+		"connection": 0, 
+		"uri": "http://192.168.1.13:3000"
+	}
+}' http://192.168.1.11:5000/set
+
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":6,
+	"labels": ["A", "B", "C", "D", "E", "F"],
+	"max": [255, 255, 255, 255, 255, 255],
+	"action": {
+		"connection": 0, 
+		"uri": "http://192.168.1.13:3000"
+	}
+}' http://192.168.1.11:5000/set
+
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":11,
+	"labels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+	"max": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
+	"action": {
+		"connection": 0, 
+		"uri": "http://192.168.1.13:3000"
+	}
+}' http://192.168.1.11:5000/set
