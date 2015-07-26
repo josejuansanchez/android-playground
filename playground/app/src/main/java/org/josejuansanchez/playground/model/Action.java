@@ -11,11 +11,11 @@ import java.io.Serializable;
 public class Action implements Serializable {
 
     public enum Connectivity {
-        @SerializedName("0")
+        @SerializedName("http")
         HTTP,
-        @SerializedName("1")
+        @SerializedName("bluetooth")
         BLUETOOTH,
-        @SerializedName("2")
+        @SerializedName("serial")
         SERIAL
     };
 

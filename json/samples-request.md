@@ -194,7 +194,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"total":1,
 	"labels": ["Volumne"],
 	"action": {
-		"connection": 0, 
+		"connection": "http", 
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
@@ -208,7 +208,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"max_values": [180, 180],
 	"initial_values": [90, 90],
 	"action": {
-		"connection": 0, 
+		"connection": "http", 
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
@@ -221,7 +221,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["R", "G", "B"],
 	"max_values": [255, 255, 255],
 	"action": {
-		"connection": 0, 
+		"connection": "http", 
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
@@ -234,7 +234,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["A", "B", "C", "D", "E", "F"],
 	"max_values": [255, 255, 255, 255, 255, 255],
 	"action": {
-		"connection": 0, 
+		"connection": "http", 
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
@@ -247,7 +247,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
 	"max_values": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
 	"action": {
-		"connection": 0, 
+		"connection": "http", 
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
