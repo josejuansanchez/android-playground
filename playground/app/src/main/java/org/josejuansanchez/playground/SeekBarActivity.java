@@ -35,11 +35,21 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         Intent intent = getIntent();
         message = (Message) intent.getSerializableExtra(Constants.EXTRA_MESSAGE);
 
+        // Initialize the array with the seekbars values
+        initializeProcessChanged();
+
         // Build the UI
-        processUICode();
+        buildUIfromMessage();
     }
 
-    private void processUICode() {
+    private void initializeProcessChanged() {
+        mProgressChanged = new int[message.getTotal()];
+        for (int i=0; i< message.getTotal(); i++) {
+            mProgressChanged[i] = 0;
+        }
+    }
+
+    private void buildUIfromMessage() {
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
 
@@ -48,9 +58,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
         //lp.weight = 1;
-        //lp.gravity = Gravity.CENTER;
-
-        mProgressChanged = new int[message.getTotal()];
 
         for (int i=0; i< message.getTotal(); i++) {
 
@@ -69,7 +76,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
             //mSeekBar.get(i).setMax(message.getMax()[i]);
             ll.addView(mSeekBar.get(i), lp);
 
-            mProgressChanged[i] = 0;
         }
 
     }
@@ -93,7 +99,10 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         JsonObject json = new JsonObject();
 
         for(int i=0; i<message.getTotal(); i++) {
+            // Build the response message
             json.addProperty(message.getLabels()[i], mProgressChanged[i]);
+
+            // Update the UI
             mTextView.get(i).setText(message.getLabels()[i] + " : " + mProgressChanged[i]);
         }
 
