@@ -25,6 +25,8 @@ public class Message implements Serializable {
     private int total;
     private String labels[];
     private Action action;
+    private int max_values[];
+    private int initial_values[];
 
     public Message(int type) {
         this.type = type;
@@ -172,5 +174,21 @@ public class Message implements Serializable {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public int[] getMaxValues() {
+        return max_values;
+    }
+
+    public void setMaxValues(int[] max_values) {
+        this.max_values = max_values;
+    }
+
+    public int[] getInitialValues() {
+        return initial_values;
+    }
+
+    public void setInitialValues(int[] initial_values) {
+        this.initial_values = initial_values;
     }
 }

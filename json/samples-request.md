@@ -205,6 +205,8 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"type":2001,
 	"total":2,
 	"labels": ["Left Servo", "Right Servo"],
+	"max_values": [180, 180],
+	"initial_values": [90, 90],
 	"action": {
 		"connection": 0, 
 		"uri": "http://192.168.1.13:3000"
@@ -217,7 +219,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"type":2001,
 	"total":3,
 	"labels": ["R", "G", "B"],
-	"max": [255, 255, 255],
+	"max_values": [255, 255, 255],
 	"action": {
 		"connection": 0, 
 		"uri": "http://192.168.1.13:3000"
@@ -230,7 +232,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"type":2001,
 	"total":6,
 	"labels": ["A", "B", "C", "D", "E", "F"],
-	"max": [255, 255, 255, 255, 255, 255],
+	"max_values": [255, 255, 255, 255, 255, 255],
 	"action": {
 		"connection": 0, 
 		"uri": "http://192.168.1.13:3000"
@@ -243,7 +245,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"type":2001,
 	"total":11,
 	"labels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
-	"max": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
+	"max_values": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
 	"action": {
 		"connection": 0, 
 		"uri": "http://192.168.1.13:3000"

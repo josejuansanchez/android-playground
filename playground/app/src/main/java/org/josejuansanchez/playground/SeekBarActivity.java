@@ -73,7 +73,15 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
             mSeekBar.add(new SeekBar(this));
             mSeekBar.get(i).setOnSeekBarChangeListener(this);
             mSeekBar.get(i).setTag(i); // Should I use setId?
-            //mSeekBar.get(i).setMax(message.getMax()[i]);
+
+            if (message.getMaxValues() != null) {
+                mSeekBar.get(i).setMax(message.getMaxValues()[i]);
+            }
+
+            if (message.getInitialValues() != null) {
+                mSeekBar.get(i).setProgress(message.getInitialValues()[i]);
+            }
+
             ll.addView(mSeekBar.get(i), lp);
 
         }
