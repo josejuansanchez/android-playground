@@ -2,6 +2,7 @@ package org.josejuansanchez.playground;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -139,13 +140,19 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         // do stuff with the result or error
+                        String text;
 
-                        if (result != null) {
-                            Log.d(TAG, "onCompleted: " + result.toString());
+                        if (e != null) {
+                            text = e.toString();
                         } else {
-                            Log.d(TAG, "onCompleted");
+                            text = "Completed!";
                         }
 
+                        LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
+                        Snackbar.make(ll, text, Snackbar.LENGTH_LONG)
+                                .show();
+
+                        Log.d(TAG, text);
                     }
                 });
 

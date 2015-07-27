@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 
 // accept POST request on the homepage
 app.post('/', function (req, res) {
-  res.json('Got a POST request');
+  res.json({response:"Got a POST request"});
   console.log('Got a POST request: ');
   console.log('R: ' + req.body.R);
   console.log('G: ' + req.body.G);
