@@ -251,3 +251,18 @@ curl -H "Content-Type: application/json" -X POST -d '
 		"uri": "http://192.168.1.13:3000"
 	}
 }' http://192.168.1.11:5000/set
+
+
+### SEEKBAR - SERIAL
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":3,
+	"labels": ["R", "G", "B"],
+	"max_values": [255, 255, 255],
+	"action": {
+		"connection": "serial"
+	}
+}' http://192.168.1.11:5000/set
+

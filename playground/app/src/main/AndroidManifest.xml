@@ -10,6 +10,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-feature android:name="android.hardware.usb.host" />
 
     <!-- TEST -->
     <!-- <supports-screens android:anyDensity="false" /> -->
@@ -43,6 +44,7 @@
             android:name=".usbserial.DeviceListActivity"
             android:label="DeviceListActivity" >
 
+            <!--
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -50,6 +52,7 @@
             <meta-data
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
+            -->
 
         </activity>
 

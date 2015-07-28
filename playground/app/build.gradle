@@ -36,4 +36,5 @@ dependencies {
     compile 'com.devbrackets.android:exomedia:2.2.1'
     compile 'com.android.support:design:22.2.1'
     compile 'com.hoho.android:usb-serial-for-android:0.2.0-SNAPSHOT@aar'
+    compile files('libs/physicaloidlibrary.jar')
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.physicaloid.lib.Physicaloid;
 
 import org.josejuansanchez.playground.model.Message;
 
@@ -120,12 +121,12 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 doHttpAction(json);
                 break;
 
-            // TODO
-            case BLUETOOTH:
+            case SERIAL:
+                doSerialAction(json);
                 break;
 
             // TODO
-            case SERIAL:
+            case BLUETOOTH:
                 break;
         }
 
@@ -156,5 +157,34 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                     }
                 });
 
+    }
+
+    private void doSerialAction(JsonObject json) {
+
+        String text;
+        Physicaloid physicaloid;
+
+        // Create a new instance
+        physicaloid = new Physicaloid(this);
+
+        // Open the device
+        if(physicaloid.open()) { // default 9600bps
+            byte[] buf = json.toString().getBytes();
+            // write a buffer to the device
+            physicaloid.write(buf, buf.length);
+
+            // Close the device
+            physicaloid.close();
+
+            text = "Completed!";
+        } else {
+            text = "Error using serial port";
+        }
+
+        LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
+        Snackbar.make(ll, text, Snackbar.LENGTH_LONG)
+                .show();
+
+        Log.d(TAG, text);
     }
 }
