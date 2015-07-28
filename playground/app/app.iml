@@ -76,6 +76,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.devbrackets.android/exomedia/2.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.exoplayer/exoplayer/r1.3.3/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.hoho.android/usb-serial-for-android/0.2.0-SNAPSHOT/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/jp.co.cyberagent.android.gpuimage/gpuimage-library/1.2.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/jp.wasabeef/picasso-transformations/1.0.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
@@ -91,8 +92,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
-      <excludeFolder url="file://$MODULE_DIR$/build/test-results" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform (1)" jdkType="Android SDK" />
@@ -110,6 +109,7 @@
     <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="ion-2.1.6" level="project" />
     <orderEntry type="library" exported="" name="MPAndroidChart-v2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="usb-serial-for-android-0.2.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="exomedia-2.2.1" level="project" />
   </component>
