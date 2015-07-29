@@ -169,6 +169,12 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         // Open the device
         if(physicaloid.open()) { // default 9600bps
+
+            // Update the baud rate if the value is present in the message
+            if (message.getAction().getBaudrate() != 0) {
+                physicaloid.setBaudrate(message.getAction().getBaudrate());
+            }
+
             byte[] buf = json.toString().getBytes();
             // write a buffer to the device
             physicaloid.write(buf, buf.length);

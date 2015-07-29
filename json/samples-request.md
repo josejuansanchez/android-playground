@@ -270,6 +270,18 @@ Example: {"light": 120}
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
+	"total":1,
+	"labels": ["light"],
+	"action": {
+		"connection": "serial",
+		"baudrate": 115200
+	}
+}' http://192.168.1.11:5000/set
+
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
 	"total":3,
 	"labels": ["R", "G", "B"],
 	"max_values": [255, 255, 255],
