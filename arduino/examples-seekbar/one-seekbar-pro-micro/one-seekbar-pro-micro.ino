@@ -7,8 +7,6 @@
   - https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/example-1-blinkies
  */
 
-String json;
-StaticJsonBuffer<200> jsonBuffer;
 int RXLED = 17; 
 
 void setup() {
@@ -22,8 +20,8 @@ void loop() {
   
   if (Serial.available() > 0) {
 
-    json = Serial.readString(); 
-
+    String json = Serial.readString(); 
+    StaticJsonBuffer<200> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
 
     if (!root.success()) {

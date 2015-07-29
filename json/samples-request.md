@@ -283,7 +283,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
 	"total":3,
-	"labels": ["R", "G", "B"],
+	"labels": ["r", "g", "b"],
 	"max_values": [255, 255, 255],
 	"action": {
 		"connection": "serial"
@@ -291,4 +291,4 @@ curl -H "Content-Type: application/json" -X POST -d '
 }' http://192.168.1.11:5000/set
 
 
-Example: {"R": 120, "G": 2, "B": 34}
+Example: {"r": 120, "g": 2, "b": 34}

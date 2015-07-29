@@ -2,9 +2,6 @@
 
 // Expected JSON message: {"volume": 120}
 
-String json;
-StaticJsonBuffer<200> jsonBuffer;
-
 void setup() {
   Serial.begin(9600);
 }
@@ -13,8 +10,8 @@ void loop() {
   
   if (Serial.available() > 0) {
 
-    json = Serial.readString(); 
-
+    String json = Serial.readString(); 
+    StaticJsonBuffer<200> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
 
     if (!root.success()) {

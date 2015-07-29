@@ -1,9 +1,6 @@
 #include <ArduinoJson.h>
 
-// Expected JSON message: {"R": 120, "G": 2, "B": 34}
-
-String json;
-StaticJsonBuffer<200> jsonBuffer;
+// Expected JSON message: {"r": 120, "g": 2, "b": 34}
 
 void setup() {
   Serial.begin(9600);
@@ -13,8 +10,8 @@ void loop() {
   
   if (Serial.available() > 0) {
 
-    json = Serial.readString(); 
-
+    String json = Serial.readString(); 
+    StaticJsonBuffer<200> jsonBuffer;
     JsonObject& root = jsonBuffer.parseObject(json);
 
     if (!root.success()) {
@@ -25,9 +22,9 @@ void loop() {
     Serial.print("json: ");
     Serial.println(json);
 
-    int r = root["R"];
-    int g = root["G"];
-    int b = root["B"];
+    int r = root["r"];
+    int g = root["g"];
+    int b = root["b"];
 
     Serial.println(r);
     Serial.println(g);
