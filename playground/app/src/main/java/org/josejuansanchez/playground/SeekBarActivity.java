@@ -38,13 +38,13 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         message = (Message) intent.getSerializableExtra(Constants.EXTRA_MESSAGE);
 
         // Initialize the array with the seekbars values
-        initializeProcessChanged();
+        initializeProgressChanged();
 
         // Build the UI
         buildUIfromMessage();
     }
 
-    private void initializeProcessChanged() {
+    private void initializeProgressChanged() {
         mProgressChanged = new int[message.getTotal()];
         for (int i=0; i< message.getTotal(); i++) {
             mProgressChanged[i] = 0;
