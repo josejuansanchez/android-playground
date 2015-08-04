@@ -213,6 +213,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	}
 }' http://192.168.1.11:5000/set
 
+// The HTTP method used is POST
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
@@ -265,6 +266,8 @@ curl -H "Content-Type: application/json" -X POST -d '
 	}
 }' http://192.168.1.11:5000/set
 
+// If the "baudrate" tag is not present in the message, 
+// then a baud rate of 9600 bit/s is used by default
 Example: {"light": 120}
 
 curl -H "Content-Type: application/json" -X POST -d '
@@ -292,3 +295,32 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 
 Example: {"r": 120, "g": 2, "b": 34}
+
+### SEEKBAR - MQTT
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":1,
+	"labels": ["light"],
+	"action": {
+		"connection": "mqtt",
+		"uri": "tcp://test.mosquitto.org",
+		"topic": "my-topic"
+	}
+}' http://192.168.1.108:5000/set
+
+IMPORTANT NOTE: MqttClient only accept tcp, ssl or local.
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"total":3,
+	"labels": ["R", "G", "B"],
+	"max_values": [255, 255, 255],
+	"action": {
+		"connection": "mqtt",
+		"uri": "tcp://test.mosquitto.org",
+		"topic": "my-topic"
+	}
+}' http://192.168.1.108:5000/set

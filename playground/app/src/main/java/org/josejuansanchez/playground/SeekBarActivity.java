@@ -15,6 +15,12 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.physicaloid.lib.Physicaloid;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.josejuansanchez.playground.model.Message;
 
 import java.util.ArrayList;
@@ -125,6 +131,14 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 doSerialAction(json);
                 break;
 
+            case MQTT:
+                doMQTTAction(json);
+                break;
+
+            // TODO
+            case UDP:
+                break;
+
             // TODO
             case BLUETOOTH:
                 break;
@@ -159,6 +173,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     }
 
+    // TODO: Should I use Physicaloid in another different thread?
     private void doSerialAction(JsonObject json) {
 
         String text;
@@ -192,5 +207,57 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 .show();
 
         Log.d(TAG, text);
+    }
+
+    // TODO: Temporary solution
+    private void doMQTTAction(final JsonObject json) {
+        new Thread(new Runnable() {
+            public void run() {
+                MqttClient client = null;
+                try
+                {
+                    // Note: MqttClient only accept tcp, ssl or local
+                    client = new MqttClient(message.getAction().getUri(), MqttClient.generateClientId(), null);
+                    client.setCallback(new ExampleCallBack());
+                } catch (MqttException e1) {
+                    e1.printStackTrace();
+                }
+
+                MqttConnectOptions options = new MqttConnectOptions();
+                try
+                {
+                    client.connect(options);
+                } catch (MqttException e) {
+                    Log.d(getClass().getCanonicalName(), "Connection attempt failed with reason code = " + e.getReasonCode() + ":" + e.getCause());
+                }
+
+                try
+                {
+                    MqttMessage mqttMessage = new MqttMessage();
+                    mqttMessage.setPayload(json.toString().getBytes());
+                    client.publish(message.getAction().getTopic(), mqttMessage);
+                }
+                catch (MqttException e)
+                {
+                    Log.d(getClass().getCanonicalName(), "Publish failed with reason code = " + e.getReasonCode());
+                }
+            }
+        }).start();
+    }
+
+    public class ExampleCallBack implements MqttCallback
+    {
+        public void connectionLost(Throwable cause)
+        {
+            Log.d(getClass().getCanonicalName(), "MQTT Server connection lost" + cause.toString());
+        }
+        public void messageArrived(String topic, MqttMessage message)
+        {
+            Log.d(getClass().getCanonicalName(), "Message arrived:" + topic + ":" + message.toString());
+        }
+        public void deliveryComplete(IMqttDeliveryToken token)
+        {
+            Log.d(getClass().getCanonicalName(), "Delivery complete");
+        }
     }
 }

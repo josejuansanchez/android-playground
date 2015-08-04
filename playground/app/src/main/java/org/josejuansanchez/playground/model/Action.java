@@ -13,15 +13,20 @@ public class Action implements Serializable {
     public enum Connectivity {
         @SerializedName("http")
         HTTP,
-        @SerializedName("bluetooth")
-        BLUETOOTH,
         @SerializedName("serial")
-        SERIAL
+        SERIAL,
+        @SerializedName("mqtt")
+        MQTT,
+        @SerializedName("udp")
+        UDP,
+        @SerializedName("bluetooth")
+        BLUETOOTH
     };
 
     private Connectivity connection;
     private String uri;
     private int baudrate;
+    private String topic;
 
     public Connectivity getConnection() {
         return connection;
@@ -45,5 +50,13 @@ public class Action implements Serializable {
 
     public void setBaudrate(int baudrate) {
         this.baudrate = baudrate;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }
