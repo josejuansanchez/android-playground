@@ -186,12 +186,21 @@ curl -H "Content-Type: application/json" -X POST -d '{"type":1000,"milliseconds"
 ### BUTTON
 curl -H "Content-Type: application/json" -X POST -d '{"type":2000,"text":"Prueba","x":10,"y":500}' http://192.168.1.11:5000/set
 
-### SEEKBAR
+### SEEKBAR - HTTP
+
+* Mandatory fields:
+  - type
+  - labels
+  - action.connection
+  	* if action.connection == "http"
+  		- uri
+  	* if action.connection == "mqtt"
+  		- uri
+  		- topic
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":1,
 	"labels": ["Volumne"],
 	"action": {
 		"connection": "http", 
@@ -203,7 +212,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":2,
 	"labels": ["Left Servo", "Right Servo"],
 	"max_values": [180, 180],
 	"initial_values": [90, 90],
@@ -218,7 +226,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":3,
 	"labels": ["R", "G", "B"],
 	"max_values": [255, 255, 255],
 	"action": {
@@ -231,7 +238,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":6,
 	"labels": ["A", "B", "C", "D", "E", "F"],
 	"max_values": [255, 255, 255, 255, 255, 255],
 	"action": {
@@ -244,7 +250,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":11,
 	"labels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
 	"max_values": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
 	"action": {
@@ -259,7 +264,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":1,
 	"labels": ["light"],
 	"action": {
 		"connection": "serial"
@@ -273,7 +277,6 @@ Example: {"light": 120}
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":1,
 	"labels": ["light"],
 	"action": {
 		"connection": "serial",
@@ -285,7 +288,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":3,
 	"labels": ["r", "g", "b"],
 	"max_values": [255, 255, 255],
 	"action": {
@@ -301,7 +303,6 @@ Example: {"r": 120, "g": 2, "b": 34}
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":1,
 	"labels": ["light"],
 	"action": {
 		"connection": "mqtt",
@@ -315,7 +316,6 @@ IMPORTANT NOTE: MqttClient only accept tcp, ssl or local.
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
-	"total":3,
 	"labels": ["R", "G", "B"],
 	"max_values": [255, 255, 255],
 	"action": {

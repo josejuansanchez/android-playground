@@ -98,6 +98,13 @@ public class ServiceHttpServer extends Service {
                     if (request.getBody() instanceof JSONObjectBody) {
 
                         JSONObject json = ((JSONObjectBody) request.getBody()).get();
+
+                        if (json == null) {
+                            errorMessage.setText("The JSON object is not well-formed");
+                            response.send(errorMessage.toJSON().toString());
+                            return;
+                        }
+
                         Gson gson = new Gson();
                         final Message message = gson.fromJson(json.toString(), Message.class);
 
@@ -112,19 +119,14 @@ public class ServiceHttpServer extends Service {
                         response.send(request.getBody().get().toString());
 
                     } else {
-                        // TODO: This event is not used. Should I remove it?
-                        EventBus.getDefault().post(new Message(Constants.ERROR));
-
                         errorMessage.setText("The content-type must be 'application/json'");
                         response.send(errorMessage.toJSON().toString());
                     }
                 } catch (Exception e) {
-
-                    // TODO: This event is not used. Should I remove it?
-                    EventBus.getDefault().post(new Message(Constants.ERROR));
-
                     errorMessage.setText(e.toString());
                     response.send(errorMessage.toJSON().toString());
+
+                    e.printStackTrace();
                 }
             }
         });

@@ -56,13 +56,25 @@ public class MessageValidator {
         }
 
         if (message.getAction().getConnection() == null) {
-            errorMessage.setText("'action.connection' is a mandatory tag and can be: 'http', 'serial' or 'bluetooh'");
+            errorMessage.setText("'action.connection' is a mandatory tag and can be: 'http', 'serial', 'mqtt' or 'bluetooth'");
             return false;
         }
 
         if (message.getAction().getConnection() == Action.Connectivity.HTTP) {
             if (message.getAction().getUri() == null) {
-                errorMessage.setText("A valid value for 'uri' tag is needed");
+                errorMessage.setText("a valid value for 'uri' tag is needed");
+                return false;
+            }
+        }
+
+        if (message.getAction().getConnection() == Action.Connectivity.MQTT) {
+            if (message.getAction().getUri() == null) {
+                errorMessage.setText("a valid value for 'uri' tag is needed");
+                return false;
+            }
+
+            if (message.getAction().getTopic() == null) {
+                errorMessage.setText("a valid value for 'topic' tag is needed");
                 return false;
             }
         }
