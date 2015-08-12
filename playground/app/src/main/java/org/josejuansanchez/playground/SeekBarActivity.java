@@ -51,8 +51,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     private void initializeProgressChanged() {
-        mProgressChanged = new int[message.getTotal()];
-        for (int i=0; i< message.getTotal(); i++) {
+        int total = message.getLabels().length;
+        mProgressChanged = new int[total];
+        for (int i=0; i< total; i++) {
             mProgressChanged[i] = 0;
         }
     }
@@ -67,7 +68,8 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         //lp.weight = 1;
 
-        for (int i=0; i< message.getTotal(); i++) {
+        int total = message.getLabels().length;
+        for (int i=0; i< total; i++) {
 
             // Configure and add Textview
             mTextView.add(new TextView(this));
@@ -114,7 +116,8 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         JsonObject json = new JsonObject();
 
-        for(int i=0; i<message.getTotal(); i++) {
+        int total = message.getLabels().length;
+        for(int i=0; i < total; i++) {
             // Build the response message
             json.addProperty(message.getLabels()[i], mProgressChanged[i]);
 
@@ -214,8 +217,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         new Thread(new Runnable() {
             public void run() {
                 MqttClient client = null;
-                try
-                {
+                try {
                     // Note: MqttClient only accept tcp, ssl or local
                     client = new MqttClient(message.getAction().getUri(), MqttClient.generateClientId(), null);
                     client.setCallback(new ExampleCallBack());
@@ -224,21 +226,18 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 }
 
                 MqttConnectOptions options = new MqttConnectOptions();
-                try
-                {
+                try {
                     client.connect(options);
                 } catch (MqttException e) {
                     Log.d(getClass().getCanonicalName(), "Connection attempt failed with reason code = " + e.getReasonCode() + ":" + e.getCause());
                 }
 
-                try
-                {
+                try {
                     MqttMessage mqttMessage = new MqttMessage();
                     mqttMessage.setPayload(json.toString().getBytes());
                     client.publish(message.getAction().getTopic(), mqttMessage);
                 }
-                catch (MqttException e)
-                {
+                catch (MqttException e) {
                     Log.d(getClass().getCanonicalName(), "Publish failed with reason code = " + e.getReasonCode());
                 }
             }

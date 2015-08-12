@@ -22,7 +22,6 @@ public class Message implements Serializable {
     private String timestamp;
     private long milliseconds;
     private String text;
-    private int total;
     private String labels[];
     private Action action;
     private int max_values[];
@@ -150,14 +149,6 @@ public class Message implements Serializable {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
     }
 
     public String[] getLabels() {
