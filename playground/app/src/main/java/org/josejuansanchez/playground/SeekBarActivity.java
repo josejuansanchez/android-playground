@@ -213,6 +213,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     // TODO: Temporary solution
+    // TODO: Review 'MqttAsyncClient' class
     private void doMQTTAction(final JsonObject json) {
         new Thread(new Runnable() {
             public void run() {
@@ -236,6 +237,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                     MqttMessage mqttMessage = new MqttMessage();
                     mqttMessage.setPayload(json.toString().getBytes());
                     client.publish(message.getAction().getTopic(), mqttMessage);
+                    client.disconnect();
                 }
                 catch (MqttException e) {
                     Log.d(getClass().getCanonicalName(), "Publish failed with reason code = " + e.getReasonCode());

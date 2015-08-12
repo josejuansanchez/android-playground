@@ -73,6 +73,12 @@ public class MessageValidator {
                 return false;
             }
 
+            // We have to check the uri because the MqttClient class only allows tcp, ssl or local.
+            if (!validateMqttURI(message.getAction().getUri())) {
+                errorMessage.setText("the 'uri' should start with 'tcp', 'ssl' or 'local'");
+                return false;
+            }
+
             if (message.getAction().getTopic() == null) {
                 errorMessage.setText("a valid value for 'topic' tag is needed");
                 return false;
@@ -80,6 +86,15 @@ public class MessageValidator {
         }
 
         return true;
+    }
+
+    public boolean validateMqttURI(String uri) {
+        if (uri.startsWith("tcp://") || uri.startsWith("ssl://") || uri.startsWith("local://")) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public ErrorMessage getErrorMessage() {
