@@ -11,8 +11,8 @@ public class Constants {
     //
     public static final String EXTRA_MESSAGE = "org.josejuansanchez.playground.MESSAGE";
 
-    // Used constants in the JSON messages
-    public static final int IMAGE_PARAMS = 0;
+    // Used constants in JSON messages
+    public static final int WEBVIEW_DISPLAY_IMAGE = 0;
     public static final int EXTERNAL_URL = 1;
     public static final int ROTATION = 100;
     public static final int ZOOMBY = 101;

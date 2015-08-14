@@ -22,11 +22,20 @@ public class MessageValidator {
         boolean isValid = false;
 
         switch (message.getType()) {
+            case Constants.WEBVIEW_DISPLAY_IMAGE:
+                isValid = validateWebViewDisplayImageMessage();
+                break;
+
             case Constants.SEEKBAR:
                 isValid = validateSeekBarMessage();
                 break;
         }
         return isValid;
+    }
+
+    private boolean validateWebViewDisplayImageMessage() {
+        // TODO:
+        return true;
     }
 
     private boolean validateSeekBarMessage() {

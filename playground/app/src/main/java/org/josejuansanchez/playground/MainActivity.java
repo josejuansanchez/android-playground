@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Utils utils = new Utils(this);
 
         // Start the HTTP server
-        //initHttpServer();
         Intent intent = new Intent(this, ServiceHttpServer.class);
         startService(intent);
 
@@ -239,9 +238,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         String responseString = null;
 
         switch (message.getType()) {
-            case Constants.IMAGE_PARAMS:
+            case Constants.WEBVIEW_DISPLAY_IMAGE:
                 setWebViewVisible();
-                mWebViewController.updateHtml(message);
+                mWebViewController.updateHtmlDisplayImage(message);
                 break;
 
             case Constants.EXTERNAL_URL:
