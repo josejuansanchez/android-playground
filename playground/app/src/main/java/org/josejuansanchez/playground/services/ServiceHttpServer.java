@@ -16,6 +16,7 @@ import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 
 import org.josejuansanchez.playground.Constants;
+import org.josejuansanchez.playground.R;
 import org.josejuansanchez.playground.model.ErrorMessage;
 import org.josejuansanchez.playground.model.Message;
 import org.josejuansanchez.playground.validators.MessageValidator;
@@ -78,12 +79,19 @@ public class ServiceHttpServer extends Service {
 
         mHttpServer.listen(AsyncServer.getDefault(), Constants.DEFAULT_HTTP_PORT);
 
+        mHttpServer.get("/", new HttpServerRequestCallback() {
+            @Override
+            public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
+                response.send(getString(R.string.httpserver_welcome_message));
+            }
+        });
+
         mHttpServer.get("/info", new HttpServerRequestCallback() {
             @Override
             public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
                 // TODO: This method could return DisplayMetrics values
                 // NOTE: int densityDpi = (int)(mDisplayMetrics.density * 160f);
-                response.send(request.getBody().get().toString());
+                response.send(getString(R.string.httpserver_welcome_message));
             }
         });
 
