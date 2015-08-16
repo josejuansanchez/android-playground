@@ -26,14 +26,32 @@ public class MessageValidator {
                 isValid = validateWebViewDisplayImageMessage();
                 break;
 
+            case Constants.ROTATION:
+                isValid = validateRotationMessage();
+                break;
+
             case Constants.SEEKBAR:
                 isValid = validateSeekBarMessage();
+                break;
+
+            case Constants.UPDATE_MESSAGE:
+                isValid = validateUpdateMessage();
                 break;
         }
         return isValid;
     }
 
     private boolean validateWebViewDisplayImageMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateRotationMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateUpdateMessage() {
         // TODO:
         return true;
     }

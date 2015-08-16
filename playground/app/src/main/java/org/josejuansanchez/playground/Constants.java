@@ -34,5 +34,7 @@ public class Constants {
     public static final int UI = 2000;
     public static final int SEEKBAR = 2001;
 
+    public static final int UPDATE_MESSAGE = 3000;
+
     public static final int ERROR = 800;
 }

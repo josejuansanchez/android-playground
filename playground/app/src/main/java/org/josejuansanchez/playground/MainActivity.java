@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private ExoPlayerController mExoPlayerController;
     private TextToSpeechController mTTSController;
 
+    // Last message executed
+    private Message mLastMessageExecuted;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,12 +243,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
         switch (message.getType()) {
             case Constants.WEBVIEW_DISPLAY_IMAGE:
                 setWebViewVisible();
-                mWebViewController.updateHtmlDisplayImage(message);
+                mWebViewController.loadHtmlDisplayImage(message);
                 break;
 
             case Constants.EXTERNAL_URL:
                 setWebViewVisible();
-                mWebViewController.updateUrl(message);
+                mWebViewController.loadUrl(message);
                 break;
 
             case Constants.ROTATION:
@@ -316,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
             case Constants.MONITOR:
                 setWebViewVisible();
-                mWebViewController.updateHtmlMonitor(message);
+                mWebViewController.loadHtmlMonitor(message);
                 break;
 
             case Constants.VIBRATE:
@@ -344,12 +347,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 break;
-
         }
 
         return responseString;
     }
 
+    public String doUpdate(Message message) {
+
+        String responseString = null;
+
+        // Notice that in this case we check the 'mLastMessageExecuted' type
+        switch (mLastMessageExecuted.getType()) {
+            case Constants.WEBVIEW_DISPLAY_IMAGE:
+                mWebViewController.update(message);
+                break;
+        }
+
+        return responseString;
+    }
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -363,7 +378,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     // https://github.com/greenrobot/EventBus/blob/master/HOWTO.md
     public void onEventMainThread(Message message) {
         Log.d(TAG, "onEvent: " + message.getType());
-        doAction(message);
+
+        // The message can be an update or an action
+        if (message.getType() == Constants.UPDATE_MESSAGE) {
+            doUpdate(message);
+        } else {
+            doAction(message);
+        }
+
+        // Update the reference of the last message executed
+        mLastMessageExecuted = message;
     }
 
 

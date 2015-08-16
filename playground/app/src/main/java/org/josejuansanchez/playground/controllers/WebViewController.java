@@ -38,7 +38,7 @@ public class WebViewController {
         mContext.getmWebView().loadDataWithBaseURL(null, HtmlDisplayImage.getInstance().getSource(), "text/html", "utf-8", null);
     }
 
-    public void updateHtmlDisplayImage(Message message) {
+    public void loadHtmlDisplayImage(Message message) {
 
         // TODO: Find a better and efficient solution.
         //       Is not a good idea to read the file from disk every time the method is called.
@@ -63,7 +63,38 @@ public class WebViewController {
         mContext.getmWebView().loadDataWithBaseURL(null, HtmlDisplayImage.getInstance().getSource(), "text/html", "utf-8", null);
     }
 
-    public void updateUrl(Message message) {
+    // TODO:
+    public void update(Message message) {
+
+        // TODO: Find a better and efficient solution.
+        //       Is not a good idea to read the file from disk every time the method is called.
+        //       The templates could be read from disk only once when the app is started.
+        //
+        // Load html source from assets
+        Utils utils = new Utils(mContext);
+        String source = utils.loadFileFromAssets("html-templates/display-image.html");
+
+        // TODO: Implement error management
+        if (source == null) {
+            return;
+        }
+
+        HtmlDisplayImage.getInstance().setSource(source);
+
+        if (message.getUrl() != null) {
+            HtmlDisplayImage.getInstance().seturlImage(message.getUrl());
+        }
+
+        // TODO:
+        // We need an efficient way that allows us to know which are the
+        // attributes that should be updated.
+        // Problematic cases: message.getX(), message.getY(), message.getWidth, message.getHeight()
+
+        // Update the html
+        mContext.getmWebView().loadDataWithBaseURL(null, HtmlDisplayImage.getInstance().getSource(), "text/html", "utf-8", null);
+    }
+
+    public void loadUrl(Message message) {
         mContext.getmWebView().loadUrl(message.getUrl());
     }
 
@@ -86,7 +117,7 @@ public class WebViewController {
         mContext.getmWebView().zoomOut();
     }
 
-    public void updateHtmlMonitor(Message message) {
+    public void loadHtmlMonitor(Message message) {
 
         // TODO: Find a better and efficient solution.
         //       Is not a good idea to read the file from disk every time the method is called.
