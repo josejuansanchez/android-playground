@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private ExoPlayerController mExoPlayerController;
     private TextToSpeechController mTTSController;
 
-    // Last message executed
+    // Last (action) message executed
     private Message mLastMessageExecuted;
 
     @Override
@@ -359,7 +359,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         // Notice that in this case we check the 'mLastMessageExecuted' type
         switch (mLastMessageExecuted.getType()) {
             case Constants.WEBVIEW_DISPLAY_IMAGE:
-                mWebViewController.update(message);
+                mWebViewController.updateXYDisplayImage(message);
                 break;
         }
 
@@ -378,16 +378,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     // https://github.com/greenrobot/EventBus/blob/master/HOWTO.md
     public void onEventMainThread(Message message) {
         Log.d(TAG, "onEvent: " + message.getType());
+        doAction(message);
 
-        // The message can be an update or an action
         if (message.getType() == Constants.UPDATE_MESSAGE) {
             doUpdate(message);
         } else {
             doAction(message);
-        }
 
-        // Update the reference of the last message executed
-        mLastMessageExecuted = message;
+            // Update the reference of the last (action) message executed
+            mLastMessageExecuted = message;
+        }
     }
 
 

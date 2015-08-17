@@ -12,8 +12,13 @@ public class Constants {
     public static final String EXTRA_MESSAGE = "org.josejuansanchez.playground.MESSAGE";
 
     // Used constants in JSON messages
-    public static final int WEBVIEW_DISPLAY_IMAGE = 0;
-    public static final int EXTERNAL_URL = 1;
+    public static final int UPDATE_MESSAGE = 0;
+
+    public static final int WEBVIEW_DISPLAY_IMAGE = 1;
+    public static final int WEBVIEW_DISPLAY_IMAGE_UPDATE_X_Y = 2;
+    public static final int WEBVIEW_DISPLAY_IMAGE_UPDATE_WIDTH_HEIGHT = 3;
+
+    public static final int EXTERNAL_URL = 10;
     public static final int ROTATION = 100;
     public static final int ZOOMBY = 101;
     public static final int ZOOMIN = 102;
@@ -33,8 +38,6 @@ public class Constants {
 
     public static final int UI = 2000;
     public static final int SEEKBAR = 2001;
-
-    public static final int UPDATE_MESSAGE = 3000;
 
     public static final int ERROR = 800;
 }

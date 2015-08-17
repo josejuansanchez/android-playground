@@ -1,7 +1,7 @@
 ## WEBVIEW / DISPLAY IMAGE
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":0,
+	"type":1,
 	"url":"http://192.168.1.11:8000/images/hello.png",
 	"x":-1400,
 	"y":0,
@@ -13,13 +13,13 @@ curl -H "Content-Type: application/json" -X POST -d '
 ## WEBVIEW / EXTERNAL_URL
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://google.es"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://josejuansanchez.org"
 }' http://192.168.1.11:5000/set
 
@@ -27,37 +27,37 @@ curl -H "Content-Type: application/json" -X POST -d '
 ### WEBVIEW / JAVASCRIPT 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/doc_lastmodified.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/doc_open.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/events_body_onload.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/events_img_onload.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/screen.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/javascript/devicepixelratio.html"
 }' http://192.168.1.11:5000/set
 
@@ -67,31 +67,31 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/video/videotest.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/video/videotest-02.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/video/video_javascript.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/video/dash_player.html"
 }' http://192.168.1.11:5000/set
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
-	"type":1,
+	"type":10,
 	"url":"http://192.168.1.11:8000/video/vlc.html"
 }' http://192.168.1.11:5000/set
 

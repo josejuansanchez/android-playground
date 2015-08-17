@@ -4,7 +4,8 @@ package org.josejuansanchez.playground.model;
  * Created by josejuansanchez on 26/04/15.
  */
 public class HtmlDisplayImage {
-    private String source;
+    private String html;
+    private String template;
     private String urlImage;
     private int x;
     private int y;
@@ -17,18 +18,21 @@ public class HtmlDisplayImage {
     private final String TAG_HEIGHT = "\\{:height:\\}";
 
 
-    private static HtmlDisplayImage instance = new HtmlDisplayImage();
+    private static HtmlDisplayImage instance = null;
 
     public static HtmlDisplayImage getInstance() {
+        if (instance == null) {
+            instance = new HtmlDisplayImage();
+        }
         return instance;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
-    public String getSource() {
-        return source;
+    public String getTemplate() {
+        return template;
     }
 
     public String geturlImage() {
@@ -37,9 +41,6 @@ public class HtmlDisplayImage {
 
     public void seturlImage(String urlImage) {
         this.urlImage = urlImage;
-
-        // Replace the "urlImage" string in the html source
-        source = source.replaceAll(TAG_URL_IMAGE, urlImage);
     }
 
     public int getX() {
@@ -48,9 +49,6 @@ public class HtmlDisplayImage {
 
     public void setX(int x) {
         this.x = x;
-
-        // Replace the "x" string in the html source
-        source = source.replaceAll(TAG_X, String.valueOf(x));
     }
 
     public int getY() {
@@ -59,9 +57,6 @@ public class HtmlDisplayImage {
 
     public void setY(int y) {
         this.y = y;
-
-        // Replace the "y" string in the html source
-        source = source.replaceAll(TAG_Y, String.valueOf(y));
     }
 
     public int getWidth() {
@@ -70,9 +65,6 @@ public class HtmlDisplayImage {
 
     public void setWidth(int width) {
         this.width = width;
-
-        // Replace the "width" string in the html source
-        source = source.replaceAll(TAG_WIDTH, String.valueOf(width));
     }
 
     public int getHeight() {
@@ -81,8 +73,27 @@ public class HtmlDisplayImage {
 
     public void setHeight(int height) {
         this.height = height;
+    }
 
-        // Replace the "height" string in the html source
-        source = source.replaceAll(TAG_HEIGHT, String.valueOf(height));
+    public String getHtml() {
+
+        html = template;
+
+        // Replace the "urlImage" string in the html template
+        html = html.replaceAll(TAG_URL_IMAGE, urlImage);
+
+        // Replace the "x" string in the html template
+        html = html.replaceAll(TAG_X, String.valueOf(x));
+
+        // Replace the "y" string in the html template
+        html = html.replaceAll(TAG_Y, String.valueOf(y));
+
+        // Replace the "width" string in the html template
+        html = html.replaceAll(TAG_WIDTH, String.valueOf(width));
+
+        // Replace the "height" string in the html template
+        html = html.replaceAll(TAG_HEIGHT, String.valueOf(height));
+
+        return html;
     }
 }
