@@ -81,7 +81,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
             // Configure and add SeekBar
             mSeekBar.add(new SeekBar(this));
-            mSeekBar.get(i).setOnSeekBarChangeListener(this);
+            //mSeekBar.get(i).setOnSeekBarChangeListener(this);
             mSeekBar.get(i).setTag(i); // Should I use setId?
 
             if (message.getMaxValues() != null) {
@@ -96,6 +96,13 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         }
 
+        // We have to set the listener in a separate loop
+        // because when the listener was added in the previous loop
+        // the method "onProgressChanged" was called and the method "doAction"
+        // was trying to access to "mTextView" views that have not been created yet.
+        for (int i=0; i< total; i++) {
+            mSeekBar.get(i).setOnSeekBarChangeListener(this);
+        }
     }
 
 
@@ -104,6 +111,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         int index = (int)seekBar.getTag();
         mProgressChanged[index] = progress;
         mTextView.get(index).setText(message.getLabels()[index] + " : " + progress);
+
+        // Send the values values with each progress change
+        doAction();
     }
 
     @Override
@@ -114,6 +124,10 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+
+    }
+
+    private void doAction() {
         JsonObject json = new JsonObject();
 
         int total = message.getLabels().length;
@@ -146,7 +160,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
             case BLUETOOTH:
                 break;
         }
-
     }
 
     private void doHttpAction(JsonObject json) {
