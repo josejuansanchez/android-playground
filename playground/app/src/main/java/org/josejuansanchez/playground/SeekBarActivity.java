@@ -73,25 +73,57 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
             // Configure and add Textview
             mTextView.add(new TextView(this));
-            mTextView.get(i).setText(message.getLabels()[i]);
-            mTextView.get(i).setTag(i); // Should I use setId?
+            mTextView.get(i).setTag(i); // Should I use setId or View.generateViewId()?
             mTextView.get(i).setPadding(50, 50, 50, 50);
             mTextView.get(i).setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+            // Update the textview with the initial value
+            int initialValueForTxtV = 0;
+            if (message.getInitialValues() != null) {
+                initialValueForTxtV = message.getInitialValues()[i];
+            } else if (message.getMinValues() != null) {
+                    initialValueForTxtV = message.getMinValues()[i];
+            }
+            mTextView.get(i).setText(message.getLabels()[i] + " : " + initialValueForTxtV);
+
+            // Add the textview to the layout
             ll.addView(mTextView.get(i), lp);
 
             // Configure and add SeekBar
             mSeekBar.add(new SeekBar(this));
             //mSeekBar.get(i).setOnSeekBarChangeListener(this);
-            mSeekBar.get(i).setTag(i); // Should I use setId?
+            mSeekBar.get(i).setTag(i); // Should I use setId or View.generateViewId()?
 
+            // Set the max value taking into account if the message contains a min value
+            int maxValue = 0;
             if (message.getMaxValues() != null) {
-                mSeekBar.get(i).setMax(message.getMaxValues()[i]);
+                maxValue = message.getMaxValues()[i];
+                if (message.getMinValues() != null) {
+                    maxValue = message.getMaxValues()[i] + Math.abs(message.getMinValues()[i]);
+                } else {
+                    maxValue = message.getMaxValues()[i];
+                }
+            } else {
+                maxValue = 100 + Math.abs(message.getMinValues()[i]);
             }
+            mSeekBar.get(i).setMax(maxValue);
 
+            // Set the initial value taking into account if the message contains an initial value
+            int initialValue = 0;
             if (message.getInitialValues() != null) {
-                mSeekBar.get(i).setProgress(message.getInitialValues()[i]);
+                if (message.getMinValues() != null) {
+                    initialValue = message.getInitialValues()[i] + Math.abs(message.getMinValues()[i]);
+                } else {
+                    initialValue = message.getInitialValues()[i];
+                }
+            } else {
+                if (message.getMinValues() != null) {
+                    initialValue = message.getMinValues()[i];
+                }
             }
+            mSeekBar.get(i).setProgress(initialValue);
 
+            // Add the seekbar to the layout
             ll.addView(mSeekBar.get(i), lp);
 
         }
@@ -109,10 +141,18 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int index = (int)seekBar.getTag();
-        mProgressChanged[index] = progress;
-        mTextView.get(index).setText(message.getLabels()[index] + " : " + progress);
 
-        // Send the values values with each progress change
+        // Check if the seekbar has a min value
+        if (message.getMinValues() != null) {
+            mProgressChanged[index] = progress + message.getMinValues()[index];
+        } else {
+            mProgressChanged[index] = progress;
+        }
+
+        // Update the UI
+        mTextView.get(index).setText(message.getLabels()[index] + " : " + mProgressChanged[index]);
+
+        // Send the values with each progress change
         doAction();
     }
 
@@ -130,13 +170,10 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     private void doAction() {
         JsonObject json = new JsonObject();
 
+        // Build the response message
         int total = message.getLabels().length;
         for(int i=0; i < total; i++) {
-            // Build the response message
             json.addProperty(message.getLabels()[i], mProgressChanged[i]);
-
-            // Update the UI
-            mTextView.get(i).setText(message.getLabels()[i] + " : " + mProgressChanged[i]);
         }
 
         switch (message.getAction().getConnection()) {

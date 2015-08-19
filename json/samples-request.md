@@ -407,11 +407,6 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 ## VIBRATE
 
-curl -H "Content-Type: application/json" -X POST -d '
-{
-	"type":1000,
-	"milliseconds":500
-}' http://192.168.1.11:5000/set
 
 
 ## UI
@@ -562,3 +557,49 @@ curl -H "Content-Type: application/json" -X POST -d '
 		"topic": "my-topic"
 	}
 }' http://192.168.1.108:5000/set
+
+### EXAMPLE OF USE WITH SEEKBAR
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":1,
+	"url":"http://192.168.1.14:8000/sun.jpg",
+	"x":0,
+	"y":0,
+	"width":412,
+	"height":603
+}' http://192.168.1.11:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2,
+	"x":-200,
+	"y":0
+}' http://192.168.1.11:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":0,
+	"x":0,
+	"y":0
+}' http://192.168.1.11:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"x":0,
+	"y":300
+}' http://192.168.1.11:5000/set
+
+curl -H "Content-Type: application/json" -X POST -d '
+{
+	"type":2001,
+	"labels": ["x", "y"],
+	"min_values": [-500, -500],
+	"max_values": [600, 600],
+	"initial_values": [0, 0],
+	"action": {
+		"connection": "http",
+		"uri": "http://192.168.1.11:5000/set"
+	}
+}' http://192.168.1.17:5000/set
+

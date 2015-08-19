@@ -25,6 +25,7 @@ public class Message implements Serializable {
     private String labels[];
     private Action action;
     private int max_values[];
+    private int min_values[];
     private int initial_values[];
 
     public Message(int type) {
@@ -173,6 +174,14 @@ public class Message implements Serializable {
 
     public void setMaxValues(int[] max_values) {
         this.max_values = max_values;
+    }
+
+    public int[] getMinValues() {
+        return min_values;
+    }
+
+    public void setMinValues(int[] min_values) {
+        this.min_values = min_values;
     }
 
     public int[] getInitialValues() {

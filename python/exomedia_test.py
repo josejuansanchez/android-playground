@@ -3,7 +3,7 @@ import random
 import time
 import datetime
 
-IP = "192.168.1.102"
+IP = "192.168.1.11"
 HTTP_PORT = 5000
 MESSAGE_TYPE = 1101
 

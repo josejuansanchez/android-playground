@@ -77,6 +77,14 @@ public class MessageValidator {
             }
         }
 
+        // min_values and labels tags must contain the same number of elements
+        if (message.getMinValues() != null) {
+            if (message.getMinValues().length != message.getLabels().length) {
+                errorMessage.setText("'min_values' and 'labels' tags must contain the same number of elements");
+                return false;
+            }
+        }
+
         if (message.getAction() == null) {
             errorMessage.setText("'action' is a mandatory tag");
             return false;
