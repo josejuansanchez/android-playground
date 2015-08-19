@@ -83,6 +83,15 @@ public class MessageValidator {
                 errorMessage.setText("'min_values' and 'labels' tags must contain the same number of elements");
                 return false;
             }
+
+            // check that the min_values are lower than the max_values
+            int total = message.getLabels().length;
+            for (int i = 0; i < total; i++) {
+                if (message.getMinValues()[i] > message.getMaxValues()[i]) {
+                    errorMessage.setText("'min_values' should be lower than 'max_values'");
+                    return false;
+                }
+            }
         }
 
         if (message.getAction() == null) {
