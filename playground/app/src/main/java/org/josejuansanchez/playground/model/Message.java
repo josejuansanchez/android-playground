@@ -13,6 +13,8 @@ public class Message implements Serializable {
     private int y;
     private int width;
     private int height;
+    private int offset_x;
+    private int offset_y;
     private float rotation;
     private float zoomFactor;
     private String command;
@@ -78,6 +80,22 @@ public class Message implements Serializable {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public int getOffsetX() {
+        return offset_x;
+    }
+
+    public void setOffsetX(int offset_x) {
+        this.offset_x = offset_x;
+    }
+
+    public int getOffsetY() {
+        return offset_y;
+    }
+
+    public void setOffsetY(int offset_y) {
+        this.offset_y = offset_y;
     }
 
     public float getRotation() {
