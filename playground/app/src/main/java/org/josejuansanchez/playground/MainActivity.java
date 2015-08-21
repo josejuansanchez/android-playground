@@ -246,6 +246,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 mWebViewController.loadHtmlDisplayImage(message);
                 break;
 
+            case Constants.WEBVIEW_DISPLAY_IMAGE_UPDATE_X_Y:
+                mWebViewController.updateXYDisplayImage(message);
+                break;
+
+            case Constants.WEBVIEW_DISPLAY_IMAGE_UPDATE_WIDTH_HEIGHT:
+                mWebViewController.updateWidthHeightDisplayImage(message);
+                break;
+
             case Constants.EXTERNAL_URL:
                 setWebViewVisible();
                 mWebViewController.loadUrl(message);
