@@ -200,8 +200,20 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     private void doHttpAction(JsonObject json) {
+        // TODO: Improve
+        if (message.getAction().getUris() != null) {
+            int totalUris = message.getAction().getUris().length;
+            for(int i=0; i < totalUris; i++) {
+                doHttpNetworkRequest(message.getAction().getUris()[i], json);
+            }
+        } else {
+            doHttpNetworkRequest(message.getAction().getUri(), json);
+        }
+    }
+
+    private void doHttpNetworkRequest(String uri, JsonObject json) {
         Ion.with(this)
-                .load(message.getAction().getUri())
+                .load(uri)
                 .setJsonObjectBody(json)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
@@ -223,7 +235,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                         Log.d(TAG, text);
                     }
                 });
-
     }
 
     // TODO: Should I use Physicaloid in another different thread?
