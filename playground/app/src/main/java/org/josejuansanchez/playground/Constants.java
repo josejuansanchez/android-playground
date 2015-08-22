@@ -17,6 +17,7 @@ public class Constants {
     public static final int WEBVIEW_DISPLAY_IMAGE = 1;
     public static final int WEBVIEW_DISPLAY_IMAGE_UPDATE_X_Y = 2;
     public static final int WEBVIEW_DISPLAY_IMAGE_UPDATE_WIDTH_HEIGHT = 3;
+    public static final int WEBVIEW_DISPLAY_IMAGE_UPDATE_OFFSET = 4;
 
     public static final int EXTERNAL_URL = 10;
     public static final int ROTATION = 100;

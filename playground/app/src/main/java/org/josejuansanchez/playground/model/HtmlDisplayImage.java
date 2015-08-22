@@ -11,6 +11,8 @@ public class HtmlDisplayImage {
     private int y;
     private int width;
     private int height;
+    private int offsetX;
+    private int offsetY;
     private final String TAG_URL_IMAGE = "\\{:url_image:\\}";
     private final String TAG_X = "\\{:x:\\}";
     private final String TAG_Y = "\\{:y:\\}";
@@ -75,6 +77,22 @@ public class HtmlDisplayImage {
         this.height = height;
     }
 
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
+
     public String getHtml() {
 
         html = template;
@@ -83,10 +101,10 @@ public class HtmlDisplayImage {
         html = html.replaceAll(TAG_URL_IMAGE, urlImage);
 
         // Replace the "x" string in the html template
-        html = html.replaceAll(TAG_X, String.valueOf(x));
+        html = html.replaceAll(TAG_X, String.valueOf(x + offsetX));
 
         // Replace the "y" string in the html template
-        html = html.replaceAll(TAG_Y, String.valueOf(y));
+        html = html.replaceAll(TAG_Y, String.valueOf(y + offsetY));
 
         // Replace the "width" string in the html template
         html = html.replaceAll(TAG_WIDTH, String.valueOf(width));

@@ -254,6 +254,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 mWebViewController.updateWidthHeightDisplayImage(message);
                 break;
 
+            case Constants.WEBVIEW_DISPLAY_IMAGE_UPDATE_OFFSET:
+                mWebViewController.updateOffset(message);
+                break;
+
             case Constants.EXTERNAL_URL:
                 setWebViewVisible();
                 mWebViewController.loadUrl(message);

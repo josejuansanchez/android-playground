@@ -62,6 +62,8 @@ public class WebViewController {
         HtmlDisplayImage.getInstance().setY(message.getY());
         HtmlDisplayImage.getInstance().setWidth(message.getWidth());
         HtmlDisplayImage.getInstance().setHeight(message.getHeight());
+        HtmlDisplayImage.getInstance().setX(message.getOffsetX());
+        HtmlDisplayImage.getInstance().setY(message.getOffsetY());
         mContext.getmWebView().loadDataWithBaseURL(null, HtmlDisplayImage.getInstance().getHtml(), "text/html", "utf-8", null);
     }
 
@@ -75,6 +77,11 @@ public class WebViewController {
         HtmlDisplayImage.getInstance().setWidth(message.getWidth());
         HtmlDisplayImage.getInstance().setHeight(message.getHeight());
         mContext.getmWebView().loadDataWithBaseURL(null, HtmlDisplayImage.getInstance().getHtml(), "text/html", "utf-8", null);
+    }
+
+    public void updateOffset(Message message) {
+        HtmlDisplayImage.getInstance().setOffsetX(message.getOffsetX());
+        HtmlDisplayImage.getInstance().setOffsetY(message.getOffsetY());
     }
 
 
