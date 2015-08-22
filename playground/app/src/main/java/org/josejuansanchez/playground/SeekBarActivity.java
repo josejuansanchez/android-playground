@@ -24,7 +24,9 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.josejuansanchez.playground.model.Message;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -170,12 +172,29 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     private void doAction() {
         JsonObject json = new JsonObject();
 
-        // Build the response message
+        // Build the response message:
+        // 1) Adding the current values of the SeekBar
         int total = message.getLabels().length;
         for(int i=0; i < total; i++) {
             json.addProperty(message.getLabels()[i], mProgressChanged[i]);
         }
 
+        // 2) Adding the fields that have been specified in the request to be included in the msg
+        if (message.getAction().getIncludeInMessage() != null) {
+            Map map = message.getAction().getIncludeInMessage();
+            Iterator it = map.keySet().iterator();
+            while(it.hasNext()){
+                String key = (String) it.next();
+
+                if (map.get(key) instanceof String) {
+                    json.addProperty(key, (String) map.get(key));
+                } else if (map.get(key) instanceof Number) {
+                    json.addProperty(key, (Number) map.get(key));
+                }
+            }
+        }
+
+        // Do the action
         switch (message.getAction().getConnection()) {
             case HTTP:
                 doHttpAction(json);

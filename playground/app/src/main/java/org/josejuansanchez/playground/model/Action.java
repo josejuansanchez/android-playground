@@ -3,6 +3,7 @@ package org.josejuansanchez.playground.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Created by josejuansanchez on 25/7/15.
@@ -28,6 +29,7 @@ public class Action implements Serializable {
     private String uris[];
     private int baudrate;
     private String topic;
+    private Map<String, Object> include_in_message;
 
     public Connectivity getConnection() {
         return connection;
@@ -67,5 +69,13 @@ public class Action implements Serializable {
 
     public void setUris(String[] uris) {
         this.uris = uris;
+    }
+
+    public Map<String, Object> getIncludeInMessage() {
+        return include_in_message;
+    }
+
+    public void setIncludeInMessage(Map<String, Object> include_in_message) {
+        this.include_in_message = include_in_message;
     }
 }
