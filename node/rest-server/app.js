@@ -18,6 +18,7 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   res.json({response:"Got a POST request"});
   console.log('Got a POST request: ');
+  console.log('type: ' + req.body.type); 
   console.log('R: ' + req.body.R);
   console.log('G: ' + req.body.G);
   console.log('B: ' + req.body.B);
