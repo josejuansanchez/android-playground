@@ -27,7 +27,7 @@ public class Action implements Serializable {
     private Connectivity connection;
     private String uris[];
     private int baudrate;
-    private String topic;
+    private String topics[];
     private Map<String, Object> include_in_message;
 
     public Connectivity getConnection() {
@@ -46,12 +46,12 @@ public class Action implements Serializable {
         this.baudrate = baudrate;
     }
 
-    public String getTopic() {
-        return topic;
+    public String[] getTopics() {
+        return topics;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setTopics(String[] topics) {
+        this.topics = topics;
     }
 
     public String[] getUris() {

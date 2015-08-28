@@ -294,7 +294,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     private void doMQTTAction(JsonObject json) {
         int totalUris = message.getAction().getUris().length;
         for(int i=0; i < totalUris; i++) {
-            doMQTTActionOneUri(message.getAction().getUris()[i], message.getAction().getTopic(), json);
+            doMQTTActionOneUri(message.getAction().getUris()[i], message.getAction().getTopics()[i], json);
         }
     }
 

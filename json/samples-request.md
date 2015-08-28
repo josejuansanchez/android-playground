@@ -535,6 +535,8 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 ### SEEKBAR - MQTT
 
+IMPORTANT NOTE: MqttClient only accept tcp, ssl or local as uri.
+
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":2001,
@@ -542,11 +544,9 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"action": {
 		"connection": "mqtt",
 		"uris": ["tcp://test.mosquitto.org"],
-		"topic": "my-topic"
+		"topics": ["my-topic"]
 	}
 }' http://192.168.1.11:5000/set
-
-IMPORTANT NOTE: MqttClient only accept tcp, ssl or local.
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
@@ -556,7 +556,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"action": {
 		"connection": "mqtt",
 		"uris": ["tcp://test.mosquitto.org"],
-		"topic": "my-topic"
+		"topics": ["my-topic"]
 	}
 }' http://192.168.1.11:5000/set
 

@@ -128,8 +128,8 @@ public class MessageValidator {
                 }
             }
 
-            if (message.getAction().getTopic() == null) {
-                errorMessage.setText("a valid value for 'topic' tag is needed");
+            if (message.getAction().getTopics() == null) {
+                errorMessage.setText("a valid value for 'topics' tag is needed");
                 return false;
             }
         }
