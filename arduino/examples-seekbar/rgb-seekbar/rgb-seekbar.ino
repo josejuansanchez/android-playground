@@ -2,8 +2,16 @@
 
 // Expected JSON message: {"r": 120, "g": 2, "b": 34}
 
+#define RPIN 8
+#define GPIN 9
+#define BPIN 10
+
 void setup() {
   Serial.begin(9600);
+
+  pinMode(RPIN, OUTPUT);
+  pinMode(GPIN, OUTPUT);
+  pinMode(BPIN, OUTPUT);
 }
 
 void loop() {
@@ -30,7 +38,9 @@ void loop() {
     Serial.println(g);
     Serial.println(b);
 
-    // TODO: Do some stuff
+    analogWrite(RPIN, r);
+    analogWrite(GPIN, g);
+    analogWrite(BPIN, b);
   }  
 
   delay(100);
