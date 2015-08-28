@@ -25,7 +25,6 @@ public class Action implements Serializable {
     };
 
     private Connectivity connection;
-    private String uri;
     private String uris[];
     private int baudrate;
     private String topic;
@@ -37,14 +36,6 @@ public class Action implements Serializable {
 
     public void setConnection(Connectivity connection) {
         this.connection = connection;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
     }
 
     public int getBaudrate() {
