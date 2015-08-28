@@ -421,14 +421,16 @@ curl -H "Content-Type: application/json" -X POST -d'
 
 ### SEEKBAR - HTTP
 
+The HTTP method used is POST
+
 * Mandatory fields:
   - type
   - labels
   - action.connection
   	* if action.connection == "http"
-  		- uri
+  		- uris
   	* if action.connection == "mqtt"
-  		- uri
+  		- uris
   		- topic
 
 curl -H "Content-Type: application/json" -X POST -d '
@@ -437,7 +439,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["Volumne"],
 	"action": {
 		"connection": "http", 
-		"uri": "http://192.168.1.13:3000"
+		"uris": ["http://192.168.1.13:3000"]
 	}
 }' http://192.168.1.11:5000/set
 
@@ -450,11 +452,9 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"initial_values": [90, 90],
 	"action": {
 		"connection": "http", 
-		"uri": "http://192.168.1.13:3000"
+		"uris": ["http://192.168.1.13:3000"]
 	}
 }' http://192.168.1.11:5000/set
-
-// The HTTP method used is POST
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
@@ -463,7 +463,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"max_values": [255, 255, 255],
 	"action": {
 		"connection": "http", 
-		"uri": "http://192.168.1.13:3000"
+		"uris": ["http://192.168.1.13:3000"]
 	}
 }' http://192.168.1.11:5000/set
 
@@ -475,7 +475,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"max_values": [255, 255, 255, 255, 255, 255],
 	"action": {
 		"connection": "http", 
-		"uri": "http://192.168.1.13:3000"
+		"uris": ["http://192.168.1.13:3000"]
 	}
 }' http://192.168.1.11:5000/set
 
@@ -487,7 +487,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"max_values": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
 	"action": {
 		"connection": "http", 
-		"uri": "http://192.168.1.13:3000"
+		"uris": ["http://192.168.1.13:3000"]
 	}
 }' http://192.168.1.11:5000/set
 
@@ -505,7 +505,9 @@ curl -H "Content-Type: application/json" -X POST -d '
 
 // If the "baudrate" tag is not present in the message, 
 // then a baud rate of 9600 bit/s is used by default
-Example: {"light": 120}
+//
+// The above message will generate the next json response:
+// {"light": 120}
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
@@ -528,8 +530,8 @@ curl -H "Content-Type: application/json" -X POST -d '
 	}
 }' http://192.168.1.11:5000/set
 
-
-Example: {"r": 120, "g": 2, "b": 34}
+// The above message will generate the next json response:
+// {"r": 120, "g": 2, "b": 34}
 
 ### SEEKBAR - MQTT
 
@@ -539,10 +541,10 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["light"],
 	"action": {
 		"connection": "mqtt",
-		"uri": "tcp://test.mosquitto.org",
+		"uris": ["tcp://test.mosquitto.org"],
 		"topic": "my-topic"
 	}
-}' http://192.168.1.108:5000/set
+}' http://192.168.1.11:5000/set
 
 IMPORTANT NOTE: MqttClient only accept tcp, ssl or local.
 
@@ -553,17 +555,18 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"max_values": [255, 255, 255],
 	"action": {
 		"connection": "mqtt",
-		"uri": "tcp://test.mosquitto.org",
+		"uris": ["tcp://test.mosquitto.org"],
 		"topic": "my-topic"
 	}
-}' http://192.168.1.108:5000/set
+}' http://192.168.1.11:5000/set
+
 
 ### EXAMPLE OF USE WITH SEEKBAR
 
 curl -H "Content-Type: application/json" -X POST -d '
 {
 	"type":1,
-	"url":"http://192.168.1.14:8000/sun.jpg",
+	"url":"http://192.168.1.12:8000/sun.jpg",
 	"x":0,
 	"y":0,
 	"width":412,
@@ -599,7 +602,7 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"initial_values": [0, 0],
 	"action": {
 		"connection": "http",
-		"uri": "http://192.168.1.11:5000/set"
+		"uris": ["http://192.168.1.11:5000/set"]
 	}
 }' http://192.168.1.17:5000/set
 

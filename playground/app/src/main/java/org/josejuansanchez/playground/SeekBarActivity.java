@@ -106,7 +106,11 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                     maxValue = message.getMaxValues()[i];
                 }
             } else {
-                maxValue = 100 + Math.abs(message.getMinValues()[i]);
+                if (message.getMinValues() != null) {
+                    maxValue = 100 + Math.abs(message.getMinValues()[i]);
+                } else {
+                    maxValue = 100;
+                }
             }
             mSeekBar.get(i).setMax(maxValue);
 
@@ -219,18 +223,13 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     private void doHttpAction(JsonObject json) {
-        // TODO: Improve
-        if (message.getAction().getUris() != null) {
-            int totalUris = message.getAction().getUris().length;
-            for(int i=0; i < totalUris; i++) {
-                doHttpNetworkRequest(message.getAction().getUris()[i], json);
-            }
-        } else {
-            doHttpNetworkRequest(message.getAction().getUri(), json);
+        int totalUris = message.getAction().getUris().length;
+        for(int i=0; i < totalUris; i++) {
+            doHttpActionOneUri(message.getAction().getUris()[i], json);
         }
     }
 
-    private void doHttpNetworkRequest(String uri, JsonObject json) {
+    private void doHttpActionOneUri(String uri, JsonObject json) {
         Ion.with(this)
                 .load(uri)
                 .setJsonObjectBody(json)
@@ -292,15 +291,22 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         Log.d(TAG, text);
     }
 
+    private void doMQTTAction(JsonObject json) {
+        int totalUris = message.getAction().getUris().length;
+        for(int i=0; i < totalUris; i++) {
+            doMQTTActionOneUri(message.getAction().getUris()[i], message.getAction().getTopic(), json);
+        }
+    }
+
     // TODO: Temporary solution
     // TODO: Review 'MqttAsyncClient' class
-    private void doMQTTAction(final JsonObject json) {
+    private void doMQTTActionOneUri(final String uri, final String topic, final JsonObject json) {
         new Thread(new Runnable() {
             public void run() {
                 MqttClient client = null;
                 try {
                     // Note: MqttClient only accept tcp, ssl or local
-                    client = new MqttClient(message.getAction().getUri(), MqttClient.generateClientId(), null);
+                    client = new MqttClient(uri, MqttClient.generateClientId(), null);
                     client.setCallback(new ExampleCallBack());
                 } catch (MqttException e1) {
                     e1.printStackTrace();
@@ -316,7 +322,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 try {
                     MqttMessage mqttMessage = new MqttMessage();
                     mqttMessage.setPayload(json.toString().getBytes());
-                    client.publish(message.getAction().getTopic(), mqttMessage);
+                    client.publish(topic, mqttMessage);
                     client.disconnect();
                 }
                 catch (MqttException e) {

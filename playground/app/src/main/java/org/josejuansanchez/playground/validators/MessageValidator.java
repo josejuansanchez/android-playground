@@ -94,33 +94,38 @@ public class MessageValidator {
             }
         }
 
+        // action is a mandatory tag
         if (message.getAction() == null) {
             errorMessage.setText("'action' is a mandatory tag");
             return false;
         }
 
+        // connection is a mandatory tag
         if (message.getAction().getConnection() == null) {
             errorMessage.setText("'action.connection' is a mandatory tag and can be: 'http', 'serial', 'mqtt' or 'bluetooth'");
             return false;
         }
 
-        if (message.getAction().getConnection() == Action.Connectivity.HTTP) {
-            if (message.getAction().getUri() == null) {
-                errorMessage.setText("a valid value for 'uri' tag is needed");
+        // uris is a mandatory tag only for HTTP and MQTT
+        if (message.getAction().getConnection() == Action.Connectivity.HTTP ||
+            message.getAction().getConnection() == Action.Connectivity.MQTT) {
+
+            if (message.getAction().getUris() == null) {
+                errorMessage.setText("a valid value for 'uris' tag is needed");
                 return false;
             }
         }
 
+        // check the uris and the topic for the mqtt case
         if (message.getAction().getConnection() == Action.Connectivity.MQTT) {
-            if (message.getAction().getUri() == null) {
-                errorMessage.setText("a valid value for 'uri' tag is needed");
-                return false;
-            }
 
-            // We have to check the uri because the MqttClient class only allows tcp, ssl or local.
-            if (!validateMqttURI(message.getAction().getUri())) {
-                errorMessage.setText("the 'uri' should start with 'tcp', 'ssl' or 'local'");
-                return false;
+            // We have to check the uris because the MqttClient class only allows tcp, ssl or local.
+            int totalUris = message.getAction().getUris().length;
+            for(int i=0; i < totalUris; i++) {
+                if (!validateMqttURI(message.getAction().getUris()[i])) {
+                    errorMessage.setText("the 'uris' should start with 'tcp', 'ssl' or 'local'");
+                    return false;
+                }
             }
 
             if (message.getAction().getTopic() == null) {
