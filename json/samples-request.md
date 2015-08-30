@@ -504,7 +504,9 @@ curl -H "Content-Type: application/json" -X POST -d '
 }' http://192.168.1.11:5000/set
 
 // If the "baudrate" tag is not present in the message, 
-// then a baud rate of 9600 bit/s is used by default
+// then a baud rate of 9600 bit/s is used by default.
+// Supported baud rates are 300, 600, 1200, 2400, 4800, 9600, 
+// 14400, 19200, 28800, 31250, 38400, 57600, and 115200.
 //
 // The above message will generate the next json response:
 // {"light": 120}
@@ -526,7 +528,8 @@ curl -H "Content-Type: application/json" -X POST -d '
 	"labels": ["r", "g", "b"],
 	"max_values": [255, 255, 255],
 	"action": {
-		"connection": "serial"
+		"connection": "serial",
+		"baudrate": 115200
 	}
 }' http://192.168.1.11:5000/set
 
