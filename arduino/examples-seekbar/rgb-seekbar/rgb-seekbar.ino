@@ -16,7 +16,7 @@ void setup() {
 
 void loop() {
 
-  String json = Serial.readString();     
+  String json = Serial.readString();
   StaticJsonBuffer<200> jsonBuffer;  
   JsonObject& root = jsonBuffer.parseObject(json);
 
@@ -39,4 +39,6 @@ void loop() {
   analogWrite(RPIN, r);
   analogWrite(GPIN, g);
   analogWrite(BPIN, b);
+
+  delay(100);
 }
