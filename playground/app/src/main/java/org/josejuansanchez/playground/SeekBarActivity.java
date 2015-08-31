@@ -1,6 +1,9 @@
 package org.josejuansanchez.playground;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.usb.UsbDeviceConnection;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
+import com.hoho.android.usbserial.driver.UsbSerialDriver;
+import com.hoho.android.usbserial.driver.UsbSerialPort;
+import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.physicaloid.lib.Physicaloid;
@@ -23,6 +29,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.josejuansanchez.playground.model.Message;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +42,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     private List<SeekBar> mSeekBar = new ArrayList<SeekBar>();
     private int mProgressChanged[];
     private Message message;
+
+    // TEST
+    private UsbSerialPort mPort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         // Build the UI
         buildUIfromMessage();
+
+        // TEST: Open usb serial port
+        testOpenUsbSerialPort();
     }
 
     private void initializeProgressChanged() {
@@ -158,8 +171,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         // Update the UI
         mTextView.get(index).setText(message.getLabels()[index] + " : " + mProgressChanged[index]);
 
+        // TEST
         // Send the values with each progress change
-        doAction();
+        //doAction();
     }
 
     @Override
@@ -169,7 +183,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        // TEST
+        // Send the values with each progress change
+        doAction();
 
     }
 
@@ -205,7 +221,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 break;
 
             case SERIAL:
-                doSerialAction(json);
+                // TEST
+                //doSerialAction(json);
+                testWriteUsbSerialPort(json);
                 break;
 
             case MQTT:
@@ -346,5 +364,104 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         {
             Log.d(getClass().getCanonicalName(), "Delivery complete");
         }
+    }
+
+
+    private void testOpenUsbSerialPort() {
+        // Find all available drivers from attached devices.
+        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+        if (availableDrivers.isEmpty()) {
+            return;
+        }
+
+        // Open a connection to the first available driver.
+        UsbSerialDriver driver = availableDrivers.get(0);
+        UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
+        if (connection == null) {
+            // TODO:
+            // You probably need to call UsbManager.requestPermission(driver.getDevice(), ..)
+            Log.d(TAG, "Opening device failed");
+            return;
+        }
+
+        mPort = driver.getPorts().get(0);
+        try {
+            mPort.open(connection);
+            mPort.setParameters(message.getAction().getBaudrate(), 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "Error setting up device: " + e.getMessage(), e);
+            return;
+        }
+
+    }
+
+    private void testWriteUsbSerialPort(JsonObject json) {
+        try {
+            byte[] buf = json.toString().getBytes();
+            mPort.write(buf, buf.length);
+            Log.d(TAG, "Write " + buf.length + " bytes.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error writing bytes into the device");
+        }
+    }
+
+    private void testCloseUsbSerialPort() {
+        try {
+            mPort.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error closing the port");
+        }
+    }
+
+    private void test(JsonObject json) {
+
+        // Find all available drivers from attached devices.
+        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+        if (availableDrivers.isEmpty()) {
+            return;
+        }
+
+        // Open a connection to the first available driver.
+        UsbSerialDriver driver = availableDrivers.get(0);
+        UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
+        if (connection == null) {
+            // TODO:
+            // You probably need to call UsbManager.requestPermission(driver.getDevice(), ..)
+            Log.d(TAG, "Opening device failed");
+            return;
+        }
+
+        UsbSerialPort port = driver.getPorts().get(0);
+        try {
+            port.open(connection);
+            port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "Error setting up device: " + e.getMessage(), e);
+            return;
+        }
+
+        try {
+            byte[] buf = json.toString().getBytes();
+            port.write(buf, buf.length);
+            Log.d(TAG, "Write " + buf.length + " bytes.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error writing bytes into the device");
+        }
+
+        /*
+        try {
+            port.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error closing the port");
+        }
+        */
     }
 }

@@ -107,8 +107,8 @@
     <orderEntry type="library" exported="" name="picasso-transformations-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="androidasync-2.1.6" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="MPAndroidChart-v2.1.0" level="project" />
     <orderEntry type="library" exported="" name="ion-2.1.6" level="project" />
+    <orderEntry type="library" exported="" name="MPAndroidChart-v2.1.0" level="project" />
     <orderEntry type="library" exported="" name="usb-serial-for-android-0.2.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="org.eclipse.paho.client.mqttv3-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
