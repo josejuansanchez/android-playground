@@ -47,4 +47,16 @@ public class SurfaceViewController {
         }).start();
     }
 
+    public void setBackgroundColor(final Message message) {
+        mContext.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mContext.getmSurfaceView().setBackgroundColor(
+                        Color.rgb(message.getR(), message.getG(), message.getB()));
+                mContext.getmSurfaceView().invalidate();
+            }
+        });
+
+    }
+
 }

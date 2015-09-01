@@ -37,6 +37,13 @@ public class MessageValidator {
             case Constants.UPDATE_MESSAGE:
                 isValid = validateUpdateMessage();
                 break;
+
+            case Constants.SURFACEVIEW:
+                isValid = validateSurfaceViewMessage();
+                break;
+
+            case Constants.SURFACEVIEW_SET_BACKGROUND_COLOR:
+                isValid = validateSurfaceViewMessageRGB();
         }
         return isValid;
     }
@@ -52,6 +59,16 @@ public class MessageValidator {
     }
 
     private boolean validateUpdateMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateSurfaceViewMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateSurfaceViewMessageRGB() {
         // TODO:
         return true;
     }

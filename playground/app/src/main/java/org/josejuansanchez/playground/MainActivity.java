@@ -329,6 +329,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 mSurfaceViewController.updateSurfaceView(message);
                 break;
 
+            case Constants.SURFACEVIEW_SET_BACKGROUND_COLOR:
+                setSurfaceViewVisible();
+                mSurfaceViewController.setBackgroundColor(message);
+                break;
+
             case Constants.MONITOR:
                 setWebViewVisible();
                 mWebViewController.loadHtmlMonitor(message);

@@ -29,6 +29,9 @@ public class Message implements Serializable {
     private int max_values[];
     private int min_values[];
     private int initial_values[];
+    private int r;
+    private int g;
+    private int b;
 
     public Message(int type) {
         this.type = type;
@@ -208,5 +211,29 @@ public class Message implements Serializable {
 
     public void setInitialValues(int[] initial_values) {
         this.initial_values = initial_values;
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
     }
 }

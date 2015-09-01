@@ -30,7 +30,10 @@ public class Constants {
     public static final int LOAD_IMAGE = 400;
     public static final int TAKE_PICTURE = 500;
     public static final int CHART = 600;
+
     public static final int SURFACEVIEW = 700;
+    public static final int SURFACEVIEW_SET_BACKGROUND_COLOR = 701;
+
     public static final int MONITOR = 900;
     public static final int VIBRATE = 1000;
     public static final int PLAY_VIDEO_WITH_EXOPLAYER = 1100;
