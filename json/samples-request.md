@@ -839,3 +839,20 @@ curl http://192.168.1.17:5000/set \
 			"uris": ["http://192.168.1.11:5000/set"]
 		}
 	}' 
+
+### ACCELEROMETER 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2002,
+		"labels": ["r", "g", "b"],
+		"action": {
+			"connection": "mqtt",
+			"uris": ["tcp://test.mosquitto.org"],
+			"topics": ["my-topic"]
+		}
+	}' 
+

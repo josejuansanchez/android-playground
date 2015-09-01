@@ -364,6 +364,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 break;
+
+            case Constants.ACCELEROMETER:
+                // Parcelable vs Serializable
+                // Reference: http://www.developerphil.com/parcelable-vs-serializable/
+                intent = new Intent(this, AccelerometerActivity.class);
+                intent.putExtra(Constants.EXTRA_MESSAGE, message);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+                break;
         }
 
         return responseString;

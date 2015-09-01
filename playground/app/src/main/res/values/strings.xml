@@ -8,4 +8,8 @@
     <string name="title_activity_seek_bar">SeekBarActivity</string>
 
     <string name="refreshing">Refreshing...</string>
+    <string name="title_activity_accelerometer">AccelerometerActivity</string>
+    <string name="activity_accelerometer_textview_x">x:</string>
+    <string name="activity_accelerometer_textview_y">y</string>
+    <string name="activity_accelerometer_textview_z">z</string>
 </resources>
