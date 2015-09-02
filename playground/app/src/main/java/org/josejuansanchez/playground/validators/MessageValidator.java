@@ -75,34 +75,42 @@ public class MessageValidator {
 
     private boolean validateSeekBarMessage() {
 
-        // labels is a mandatory tag
-        if (message.getLabels() == null) {
-            errorMessage.setText("'labels' is a mandatory tag");
+        // ids is a mandatory tag
+        if (message.getIds() == null) {
+            errorMessage.setText("'ids' is a mandatory tag");
             return false;
         }
 
-        if (message.getLabels().length <= 0) {
-            errorMessage.setText("'labels' must contain at least one element");
+        if (message.getIds().length <= 0) {
+            errorMessage.setText("'ids' must contain at least one element");
             return false;
         }
 
-        // max_values and labels tags must contain the same number of elements
-        if (message.getMaxValues() != null) {
-            if (message.getMaxValues().length != message.getLabels().length) {
-                errorMessage.setText("'max_values' and 'labels' tags must contain the same number of elements");
+        // labels and ids tags must contain the same number of elements
+        if (message.getLabels() != null) {
+            if (message.getLabels().length != message.getIds().length) {
+                errorMessage.setText("'labels' and 'ids' tags must contain the same number of elements");
                 return false;
             }
         }
 
-        // min_values and labels tags must contain the same number of elements
+        // max_values and ids tags must contain the same number of elements
+        if (message.getMaxValues() != null) {
+            if (message.getMaxValues().length != message.getIds().length) {
+                errorMessage.setText("'max_values' and 'ids' tags must contain the same number of elements");
+                return false;
+            }
+        }
+
+        // min_values and ids tags must contain the same number of elements
         if (message.getMinValues() != null) {
-            if (message.getMinValues().length != message.getLabels().length) {
-                errorMessage.setText("'min_values' and 'labels' tags must contain the same number of elements");
+            if (message.getMinValues().length != message.getIds().length) {
+                errorMessage.setText("'min_values' and 'ids' tags must contain the same number of elements");
                 return false;
             }
 
             // check that the min_values are lower than the max_values
-            int total = message.getLabels().length;
+            int total = message.getIds().length;
             for (int i = 0; i < total; i++) {
                 if (message.getMinValues()[i] > message.getMaxValues()[i]) {
                     errorMessage.setText("'min_values' should be lower than 'max_values'");

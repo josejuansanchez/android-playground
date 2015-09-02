@@ -66,7 +66,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     private void initializeProgressChanged() {
-        int total = message.getLabels().length;
+        int total = message.getIds().length;
         mProgressChanged = new int[total];
         for (int i=0; i< total; i++) {
             mProgressChanged[i] = 0;
@@ -83,7 +83,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         //lp.weight = 1;
 
-        int total = message.getLabels().length;
+        int total = message.getIds().length;
         for (int i=0; i< total; i++) {
 
             // Configure and add Textview
@@ -99,7 +99,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
             } else if (message.getMinValues() != null) {
                     initialValueForTxtV = message.getMinValues()[i];
             }
-            mTextView.get(i).setText(message.getLabels()[i] + " : " + initialValueForTxtV);
+            mTextView.get(i).setText(getLabel(i) + " : " + initialValueForTxtV);
 
             // Add the textview to the layout
             ll.addView(mTextView.get(i), lp);
@@ -156,6 +156,14 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         }
     }
 
+    // If the labels tag is not present we use the id as label
+    public String getLabel(int index) {
+        String label = message.getIds()[index];
+        if (message.getLabels() != null) {
+            label = message.getLabels()[index];
+        }
+        return label;
+    }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -169,7 +177,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         }
 
         // Update the UI
-        mTextView.get(index).setText(message.getLabels()[index] + " : " + mProgressChanged[index]);
+        mTextView.get(index).setText(getLabel(index) + " : " + mProgressChanged[index]);
 
         // TEST
         // Send the values with each progress change
@@ -194,9 +202,9 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         // Build the response message:
         // 1) Adding the current values of the SeekBar
-        int total = message.getLabels().length;
+        int total = message.getIds().length;
         for(int i=0; i < total; i++) {
-            json.addProperty(message.getLabels()[i], mProgressChanged[i]);
+            json.addProperty(message.getIds()[i], mProgressChanged[i]);
         }
 
         // 2) Adding the fields that have been specified in the request to be included in the msg

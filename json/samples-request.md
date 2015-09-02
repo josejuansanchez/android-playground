@@ -611,7 +611,7 @@ The HTTP method used is POST
 
 * Mandatory fields:
   - type
-  - labels
+  - ids
   - action.connection
   	* if action.connection == "http"
   		- uris
@@ -619,13 +619,14 @@ The HTTP method used is POST
   		- uris
   		- topic
 
+
 curl http://192.168.1.11:5000/set \
 	-H "Content-Type: application/json" \
 	-X POST \
 	-d '
 	{
 		"type":2001,
-		"labels": ["Volumne"],
+		"ids": ["volume"],
 		"action": {
 			"connection": "http", 
 			"uris": ["http://192.168.1.13:3000"]
@@ -639,6 +640,36 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
+		"ids": ["volume"],
+		"labels": ["Volumne"],
+		"action": {
+			"connection": "http", 
+			"uris": ["http://192.168.1.13:3000"]
+		}
+	}' 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2001,
+		"ids": ["left", "right"],
+		"max_values": [180, 180],
+		"initial_values": [90, 90],
+		"action": {
+			"connection": "http", 
+			"uris": ["http://192.168.1.13:3000"]
+		}
+	}' 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2001,
+		"ids": ["left", "right"],
 		"labels": ["Left Servo", "Right Servo"],
 		"max_values": [180, 180],
 		"initial_values": [90, 90],
@@ -654,6 +685,21 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
+		"ids": ["r", "g", "b"],
+		"max_values": [255, 255, 255],
+		"action": {
+			"connection": "http", 
+			"uris": ["http://192.168.1.13:3000"]
+		}
+	}' 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2001,
+		"ids": ["r", "g", "b"],
 		"labels": ["R", "G", "B"],
 		"max_values": [255, 255, 255],
 		"action": {
@@ -669,7 +715,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["A", "B", "C", "D", "E", "F"],
+		"ids": ["A", "B", "C", "D", "E", "F"],
 		"max_values": [255, 255, 255, 255, 255, 255],
 		"action": {
 			"connection": "http", 
@@ -684,7 +730,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+		"ids": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
 		"max_values": [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
 		"action": {
 			"connection": "http", 
