@@ -282,10 +282,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                             text = "Completed!";
                         }
 
-                        LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
-                        Snackbar.make(ll, text, Snackbar.LENGTH_LONG)
-                                .show();
-
+                        showSnackbar(text);
                         Log.d(TAG, text);
                     }
                 });
