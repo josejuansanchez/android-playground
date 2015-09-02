@@ -19,7 +19,6 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-import com.physicaloid.lib.Physicaloid;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -42,8 +41,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     private List<SeekBar> mSeekBar = new ArrayList<SeekBar>();
     private int mProgressChanged[];
     private Message message;
-
-    // TEST
     private UsbSerialPort mPort;
 
     @Override
@@ -60,11 +57,25 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         // Build the UI
         buildUIfromMessage();
-
-        // TEST: Open usb serial port
-        testOpenUsbSerialPort();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Open usb serial port
+        openUsbSerialPort();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Close usb serial port
+        closeUsbSerialPort();
+    }
+
+    // Initialize the array with the progress values
     private void initializeProgressChanged() {
         int total = message.getIds().length;
         mProgressChanged = new int[total];
@@ -73,6 +84,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         }
     }
 
+    // Build the UI form the message
     private void buildUIfromMessage() {
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
@@ -229,9 +241,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 break;
 
             case SERIAL:
-                // TEST
-                //doSerialAction(json);
-                testWriteUsbSerialPort(json);
+                doSerialAction(json);
                 break;
 
             case MQTT:
@@ -279,42 +289,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                         Log.d(TAG, text);
                     }
                 });
-    }
-
-    // TODO: Should I use Physicaloid in another different thread?
-    private void doSerialAction(JsonObject json) {
-
-        String text;
-        Physicaloid physicaloid;
-
-        // Create a new instance
-        physicaloid = new Physicaloid(this);
-
-        // Open the device
-        if(physicaloid.open()) { // default 9600bps
-
-            // Update the baud rate if the value is present in the message
-            if (message.getAction().getBaudrate() != 0) {
-                physicaloid.setBaudrate(message.getAction().getBaudrate());
-            }
-
-            byte[] buf = json.toString().getBytes();
-            // write a buffer to the device
-            physicaloid.write(buf, buf.length);
-
-            // Close the device
-            physicaloid.close();
-
-            text = "Completed!";
-        } else {
-            text = "Error using serial port";
-        }
-
-        LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
-        Snackbar.make(ll, text, Snackbar.LENGTH_LONG)
-                .show();
-
-        Log.d(TAG, text);
     }
 
     private void doMQTTAction(JsonObject json) {
@@ -375,7 +349,8 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
 
-    private void testOpenUsbSerialPort() {
+    // TODO: Should I do this in another different thread?
+    private void openUsbSerialPort() {
         // Find all available drivers from attached devices.
         UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
         List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
@@ -405,18 +380,25 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     }
 
-    private void testWriteUsbSerialPort(JsonObject json) {
+    // TODO: Should I do this in another different thread?
+    private void doSerialAction(JsonObject json) {
         try {
             byte[] buf = json.toString().getBytes();
             mPort.write(buf, buf.length);
-            Log.d(TAG, "Write " + buf.length + " bytes.");
+
+            showSnackbar("Write " + buf.length + " bytes.");
+            Log.d(TAG, "Write " + buf.length + " bytes");
+
         } catch (IOException e) {
             e.printStackTrace();
+
+            showSnackbar("Error writing bytes into the device");
             Log.d(TAG, "Error writing bytes into the device");
         }
     }
 
-    private void testCloseUsbSerialPort() {
+    // TODO: Should I do this in another different thread?
+    private void closeUsbSerialPort() {
         try {
             mPort.close();
         } catch (IOException e) {
@@ -425,51 +407,11 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         }
     }
 
-    private void test(JsonObject json) {
+    // Show a snackbar with information text or feedback for the user
+    private void showSnackbar(String text) {
+        LinearLayout ll = (LinearLayout) findViewById(R.id.activity_seekbar_linearlayout);
+        Snackbar.make(ll, text, Snackbar.LENGTH_LONG)
+                .show();
 
-        // Find all available drivers from attached devices.
-        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-        if (availableDrivers.isEmpty()) {
-            return;
-        }
-
-        // Open a connection to the first available driver.
-        UsbSerialDriver driver = availableDrivers.get(0);
-        UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
-        if (connection == null) {
-            // TODO:
-            // You probably need to call UsbManager.requestPermission(driver.getDevice(), ..)
-            Log.d(TAG, "Opening device failed");
-            return;
-        }
-
-        UsbSerialPort port = driver.getPorts().get(0);
-        try {
-            port.open(connection);
-            port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(TAG, "Error setting up device: " + e.getMessage(), e);
-            return;
-        }
-
-        try {
-            byte[] buf = json.toString().getBytes();
-            port.write(buf, buf.length);
-            Log.d(TAG, "Write " + buf.length + " bytes.");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d(TAG, "Error writing bytes into the device");
-        }
-
-        /*
-        try {
-            port.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d(TAG, "Error closing the port");
-        }
-        */
     }
 }
