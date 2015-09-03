@@ -747,7 +747,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["light"],
+		"ids": ["light"],
 		"action": {
 			"connection": "serial"
 		}
@@ -767,7 +767,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["light"],
+		"ids": ["light"],
 		"action": {
 			"connection": "serial",
 			"baudrate": 115200
@@ -781,7 +781,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["r", "g", "b"],
+		"ids": ["r", "g", "b"],
 		"max_values": [255, 255, 255],
 		"action": {
 			"connection": "serial",
@@ -802,7 +802,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["light"],
+		"ids": ["light"],
 		"action": {
 			"connection": "mqtt",
 			"uris": ["tcp://test.mosquitto.org"],
@@ -816,7 +816,7 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2001,
-		"labels": ["R", "G", "B"],
+		"ids": ["r", "g", "b"],
 		"max_values": [255, 255, 255],
 		"action": {
 			"connection": "mqtt",
