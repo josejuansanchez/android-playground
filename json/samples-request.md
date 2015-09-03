@@ -894,11 +894,9 @@ curl http://192.168.1.11:5000/set \
 	-d '
 	{
 		"type":2002,
-		"labels": ["r", "g", "b"],
+		"ids": ["r", "g", "b"],
 		"action": {
-			"connection": "mqtt",
-			"uris": ["tcp://test.mosquitto.org"],
-			"topics": ["my-topic"]
+			"connection": "http",
+			"uris": ["http://192.168.1.12:3000"]
 		}
 	}' 
-

@@ -34,6 +34,10 @@ public class MessageValidator {
                 isValid = validateSeekBarMessage();
                 break;
 
+            case Constants.ACCELEROMETER:
+                isValid = validateAccelerometerMessage();
+                break;
+
             case Constants.UPDATE_MESSAGE:
                 isValid = validateUpdateMessage();
                 break;
@@ -44,6 +48,7 @@ public class MessageValidator {
 
             case Constants.SURFACEVIEW_SET_BACKGROUND_COLOR:
                 isValid = validateSurfaceViewMessageRGB();
+
         }
         return isValid;
     }
@@ -69,6 +74,11 @@ public class MessageValidator {
     }
 
     private boolean validateSurfaceViewMessageRGB() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateAccelerometerMessage() {
         // TODO:
         return true;
     }
