@@ -95,8 +95,11 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         for(int i=0; i < total; i++) {
 
             // TODO:
-            // Iprove this temporary solution
-            json.addProperty(message.getIds()[i], (int) values[i]);
+            // Improve this temporary solution
+            long value = map ((int)values[i], -10, 10, 0, 255);
+            json.addProperty(message.getIds()[i], (int) value);
+            //json.addProperty(message.getIds()[i], (int) values[i]);
+
             //json.addProperty(message.getIds()[i], values[i]);
         }
 
@@ -177,5 +180,11 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
                 .show();
 
     }
+
+    // map(value, fromLow, fromHigh, toLow, toHigh)
+    private long map(long x, long in_min, long in_max, long out_min, long out_max) {
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
 
 }

@@ -900,3 +900,43 @@ curl http://192.168.1.11:5000/set \
 			"uris": ["http://192.168.1.12:3000"]
 		}
 	}' 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2002,
+		"ids": ["r", "g", "b"],
+		"action": {
+			"connection": "http",
+			"uris": ["http://192.168.1.12:3000"]
+		},
+
+		"include_in_output_message": {
+			"type": 2
+		}
+
+		"process_output_values": {
+			"data_type:" [int | float],
+			"map": [fromLow, fromHigh, toLow, toHigh]
+		}
+	}' 
+
+curl http://192.168.1.11:5000/set \
+	-H "Content-Type: application/json" \
+	-X POST \
+	-d '
+	{
+		"type":2002,
+		"ids": ["r", "g", "b"],
+		"action": {
+			"connection": "http",
+			"uris": ["http://192.168.1.10:5000/set",
+					 "http://192.168.1.16:5000/set"],
+			"include_in_message": {
+				"type": 701
+			}
+		}
+	}' 
+
