@@ -48,6 +48,16 @@ public class MessageValidator {
 
             case Constants.SURFACEVIEW_SET_BACKGROUND_COLOR:
                 isValid = validateSurfaceViewMessageRGB();
+                break;
+
+            case Constants.TEXT_TO_SPEECH:
+                isValid = validateTextToSpeechMessage();
+                break;
+
+            case Constants.VIBRATE:
+                isValid = validateVibrateMessage();
+                break;
+
 
         }
         return isValid;
@@ -79,6 +89,16 @@ public class MessageValidator {
     }
 
     private boolean validateAccelerometerMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateTextToSpeechMessage() {
+        // TODO:
+        return true;
+    }
+
+    private boolean validateVibrateMessage() {
         // TODO:
         return true;
     }

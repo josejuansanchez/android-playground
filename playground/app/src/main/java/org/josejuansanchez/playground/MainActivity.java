@@ -404,7 +404,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     // https://github.com/greenrobot/EventBus/blob/master/HOWTO.md
     public void onEventMainThread(Message message) {
         Log.d(TAG, "onEvent: " + message.getType());
-        doAction(message);
+
+        //doAction(message);
 
         if (message.getType() == Constants.UPDATE_MESSAGE) {
             doUpdate(message);
