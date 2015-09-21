@@ -1,3 +1,5 @@
 _books
 _notes
 _temp
+
+*.pyc
