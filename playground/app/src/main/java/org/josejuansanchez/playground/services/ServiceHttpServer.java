@@ -19,7 +19,6 @@ import org.josejuansanchez.playground.Constants;
 import org.josejuansanchez.playground.R;
 import org.josejuansanchez.playground.model.ErrorMessage;
 import org.josejuansanchez.playground.model.Message;
-import org.josejuansanchez.playground.validators.MessageValidator;
 import org.json.JSONObject;
 
 import de.greenrobot.event.EventBus;
@@ -117,12 +116,14 @@ public class ServiceHttpServer extends Service {
                         final Message message = gson.fromJson(json.toString(), Message.class);
 
                         /*// TODO: The validation process has been disabled (temporarily)*/
+                        /*
                         MessageValidator validator = new MessageValidator(message);
 
                         if (!validator.validateMessage()) {
                             response.send(validator.getErrorMessage().toJSON().toString());
                             return;
                         }
+                        */
 
                         EventBus.getDefault().post(message);
                         response.send(request.getBody().get().toString());

@@ -19,6 +19,9 @@
     </annotationProcessing>
   </component>
   <component name="CopyrightManager" default="" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -32,15 +35,31 @@
             <option value="$PROJECT_DIR$" />
           </set>
         </option>
-        <option name="useAutoImport" value="true" />
       </GradleProjectSettings>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
-      </MavenGeneralSettings>
+  <component name="NullableNotNullManager">
+    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
+    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
+    <option name="myNullables">
+      <value>
+        <list size="4">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+        </list>
+      </value>
+    </option>
+    <option name="myNotNulls">
+      <value>
+        <list size="4">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
+        </list>
+      </value>
     </option>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -59,11 +78,197 @@
       <module fileurl="file://$PROJECT_DIR$/../playground.iml" filepath="$PROJECT_DIR$/../playground.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="RunConfigurationProducerService">
+    <option name="ignoredProducers">
+      <set>
+        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
+        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
+        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
+      </set>
+    </option>
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
+  </component>
+  <component name="libraryTable">
+    <library name="androidasync-2.1.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/e3d5f6ab2003e31f2cf5ea61b4731a21e9517935/androidasync-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.async/androidasync/2.1.6/a1acdfc68dbc97a1657696eb0e3a6babf924b3d0/androidasync-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="appcompat-v7-22.2.1">
+      <ANNOTATIONS>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/annotations.zip!/" />
+      </ANNOTATIONS>
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res" />
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/development/sdk/extras/android/m2repository/com/android/support/appcompat-v7/22.2.1/appcompat-v7-22.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="bluetoothspp-1.0.0">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.akexorcist/bluetoothspp/1.0.0/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.akexorcist/bluetoothspp/1.0.0/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="design-22.2.1">
+      <ANNOTATIONS>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/design/22.2.1/annotations.zip!/" />
+      </ANNOTATIONS>
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/design/22.2.1/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="eventbus-2.4.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/eventbus/2.4.0/ddd166d01b3158d1c00576d29f7ed15c030df719/eventbus-2.4.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.greenrobot/eventbus/2.4.0/cee6c22609a274edf0a358000f3e470446948070/eventbus-2.4.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="exomedia-2.2.1">
+      <ANNOTATIONS>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.devbrackets.android/exomedia/2.2.1/annotations.zip!/" />
+      </ANNOTATIONS>
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.devbrackets.android/exomedia/2.2.1/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.devbrackets.android/exomedia/2.2.1/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="exoplayer-r1.3.3">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.google.android.exoplayer/exoplayer/r1.3.3/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.google.android.exoplayer/exoplayer/r1.3.3/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gpuimage-library-1.2.3">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/jp.co.cyberagent.android.gpuimage/gpuimage-library/1.2.3/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/jp.co.cyberagent.android.gpuimage/gpuimage-library/1.2.3/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="gson-2.3.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/563dcb685903c96ce8abbd03adf7fa49e19aa8b4/gson-2.3.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="ion-2.1.6">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.ion/ion/2.1.6/cd55ef3ba6d8b62838b658ba2507b019dffb3a08/ion-2.1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.ion/ion/2.1.6/c4a16b8d88c08bffed81265c5b5709ce94e4bc18/ion-2.1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="MPAndroidChart-v2.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.1.0/ec46f9251e1e0ee60e1b6beae8b16f2e0fdee474/MPAndroidChart-v2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.1.0/35464e3d77fb61541890501312dd57a72844fa73/MPAndroidChart-v2.1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.eclipse.paho.client.mqttv3-1.0.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/11752d3f24d1a9deda4533a7ca18d8496417ceeb/org.eclipse.paho.client.mqttv3-1.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="otto-1.3.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.7/69d90fd7fb70e54746e26c10454c220e40a775ce/otto-1.3.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.7/1ddf410fa200d87c61f5100eb498438988a6a076/otto-1.3.7-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="physicaloidlibrary">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/libs/physicaloidlibrary.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="picasso-2.5.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/3f998a26355e4138e3e7a880a5dac57fc4370339/picasso-2.5.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="picasso-transformations-1.0.3">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/jp.wasabeef/picasso-transformations/1.0.3/jars/classes.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/jp.wasabeef/picasso-transformations/1.0.3/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="support-annotations-22.2.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/development/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/development/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="support-v4-22.2.1">
+      <ANNOTATIONS>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/annotations.zip!/" />
+      </ANNOTATIONS>
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar!/" />
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/res" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/development/sdk/extras/android/m2repository/com/android/support/support-v4/22.2.1/support-v4-22.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="usb-serial-for-android-0.2.0-SNAPSHOT">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.hoho.android/usb-serial-for-android/0.2.0-SNAPSHOT/res" />
+        <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.hoho.android/usb-serial-for-android/0.2.0-SNAPSHOT/jars/classes.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
   </component>
   <component name="masterDetails">
     <states>

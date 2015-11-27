@@ -38,4 +38,5 @@ dependencies {
     compile 'com.hoho.android:usb-serial-for-android:0.2.0-SNAPSHOT@aar'
     compile files('libs/physicaloidlibrary.jar')
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
+    compile 'com.akexorcist:bluetoothspp:1.0.0'
 }

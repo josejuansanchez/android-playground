@@ -45,4 +45,6 @@ public class Constants {
     public static final int ACCELEROMETER = 2002;
 
     public static final int ERROR = 800;
+
+    public static final int BLUETOOTH = 5000;
 }

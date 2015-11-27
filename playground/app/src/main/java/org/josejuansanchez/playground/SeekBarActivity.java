@@ -297,9 +297,19 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     // TODO: Temporary solution
     // TODO: Review 'MqttAsyncClient' class
-    private void doMQTTActionOneUri(final String uri, final String topic, final JsonObject json) {
+    private void doMQTTActionOneUri(final String uri, final String topic,  final JsonObject json) {
         new Thread(new Runnable() {
             public void run() {
+
+                // ***
+                MqttConnectOptions options = new MqttConnectOptions();
+
+                //String apiKey = "a-e20x0k-yjhukg8v6f";
+                //String authToken = "&lg-!JY+h2_+RqiQ*9";
+                //options.setUserName(apiKey);
+                //options.setPassword(authToken.toCharArray());
+                // ***
+
                 MqttClient client = null;
                 try {
                     // Note: MqttClient only accept tcp, ssl or local
@@ -309,7 +319,6 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                     e1.printStackTrace();
                 }
 
-                MqttConnectOptions options = new MqttConnectOptions();
                 try {
                     client.connect(options);
                 } catch (MqttException e) {
@@ -344,6 +353,8 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
             Log.d(getClass().getCanonicalName(), "Delivery complete");
         }
     }
+
+
 
 
     // TODO: Should I do this in another different thread?

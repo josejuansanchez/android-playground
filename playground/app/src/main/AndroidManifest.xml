@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature android:name="android.hardware.usb.host" />
     <uses-feature
@@ -72,6 +74,7 @@
             android:name=".AccelerometerActivity"
             android:label="@string/title_activity_accelerometer" >
         </activity>
+
     </application>
 
 </manifest>
