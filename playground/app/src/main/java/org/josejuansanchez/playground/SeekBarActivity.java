@@ -238,6 +238,7 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
         switch (message.getAction().getConnection()) {
             case HTTP:
                 doHttpAction(json);
+                //HttpAction.getInstance(this, message, json).doHttpAction();
                 break;
 
             case SERIAL:
@@ -304,10 +305,10 @@ public class SeekBarActivity extends AppCompatActivity implements SeekBar.OnSeek
                 // ***
                 MqttConnectOptions options = new MqttConnectOptions();
 
-                //String apiKey = "a-e20x0k-yjhukg8v6f";
-                //String authToken = "&lg-!JY+h2_+RqiQ*9";
-                //options.setUserName(apiKey);
-                //options.setPassword(authToken.toCharArray());
+                String username = "use-token-auth";
+                String password = "jmyHZcEyUDuKMC1!*r";
+                options.setUserName(username);
+                options.setPassword(password.toCharArray());
                 // ***
 
                 MqttClient client = null;

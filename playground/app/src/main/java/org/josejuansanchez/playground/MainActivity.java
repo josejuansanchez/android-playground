@@ -377,10 +377,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case Constants.BLUETOOTH:
                 // Parcelable vs Serializable
                 // Reference: http://www.developerphil.com/parcelable-vs-serializable/
-                intent = new Intent(this, BluetoothActivity.class);
-                intent.putExtra(Constants.EXTRA_MESSAGE, message);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+                //intent = new Intent(this, BluetoothActivity.class);
+                //intent.putExtra(Constants.EXTRA_MESSAGE, message);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                //startActivity(intent);
                 break;
         }
 
