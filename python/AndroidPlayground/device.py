@@ -18,7 +18,7 @@ class Device:
            "-d '{\"type\":1000,"
            "\"milliseconds\":%d}' " % (self.ip, self.port, milliseconds)
           )
-
+        print(command)
         subprocess.call(command, shell=True)
 
     def setBackgroundColor(self, r, g, b):
@@ -32,3 +32,17 @@ class Device:
                 )
 
         subprocess.call(command, shell=True)
+
+    '''
+    def setBackgroundColor(self, rgb):
+        command = ("curl http://%s:%d/set "
+                   "-H \"Content-Type: application/json\" "
+                   "-X POST "
+                   "-d '{\"type\":701,"
+                   "\"r\":%d,"
+                   "\"g\":%d,"
+                   "\"b\":%d}' " % (self.ip, self.port, rgb[0], rgb[1], rgb[2])
+                )
+
+        subprocess.call(command, shell=True)
+    '''
