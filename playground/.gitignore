@@ -1,4 +1,6 @@
 .DS_Store
+.idea 
+.idea/libraries
 
 # Built application files
 *.apk
