@@ -1,14 +1,14 @@
-apply plugin: 'android-sdk-manager'
+//apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "org.josejuansanchez.playground"
         //minSdkVersion 14
-        minSdkVersion 17
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -23,20 +23,22 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.koushikdutta.async:androidasync:2.+'
     compile 'com.koushikdutta.ion:ion:2.+'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.0'
     compile 'jp.wasabeef:picasso-transformations:1.0.3@aar'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.2.3@aar'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.exoplayer:exoplayer:r1.3.3'
     compile 'com.devbrackets.android:exomedia:2.2.1'
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.hoho.android:usb-serial-for-android:0.2.0-SNAPSHOT@aar'
     compile files('libs/physicaloidlibrary.jar')
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
     compile 'com.akexorcist:bluetoothspp:1.0.0'
+    //compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
+    //compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.0.2'
 }

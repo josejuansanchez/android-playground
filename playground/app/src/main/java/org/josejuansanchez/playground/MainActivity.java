@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mWebView.getSettings().setDomStorageEnabled(true);
 
         // To allow the autoplay tag in HTML5 video (minSdkVersion 17 (4.4) is required)
-        mWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        //mWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
